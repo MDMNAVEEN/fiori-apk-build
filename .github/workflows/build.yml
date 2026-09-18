@@ -16,7 +16,7 @@ jobs:
       - name: Patch config.xml for internal server access
         run: |
           cd app
-          sed -i 's#</widget>#<allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />\n<access origin="http://ashd2sap.exalca.corp:8000" />\n<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"><application android:usesCleartextTraffic="true" /></edit-config>\n</widget>#' config.xml
+          sed -i 's#</widget>#<allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />\n<access origin="http://ashd2sap.exalca.corp:8000" />\n<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"><application xmlns:android="http://schemas.android.com/apk/res/android" android:usesCleartextTraffic="true" /></edit-config>\n</widget>#' config.xml
       - name: Add Android platform
         working-directory: app
         run: cordova platform add android

@@ -1,45 +1,75 @@
 name: Build APK
 
 on:
-  push:
-  workflow_dispatch:
+push:
+workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+build:
+runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+```
+steps:
+  - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  - uses: actions/setup-node@v4
+    with:
+      node-version: 20
 
-      - name: Install Cordova
-        run: npm install -g cordova
+  - name: Install Cordova
+    run: npm install -g cordova
 
-      - name: Create Cordova project
-        run: |
-          cordova create app com.yourcompany.fioriapp FioriApp
-          rm -rf app/www/*
-          cp -r webapp/* app/www/
+  - name: Create Cordova project
+    run: |
+      cordova create app com.yourcompany.fioriapp FioriApp
 
-      - name: Add Android platform
-        working-directory: app
-        run: cordova platform add android
+      rm -rf app/www/*
+      cp -r webapp/* app/www/
 
-      - name: Configure Cordova
-        working-directory: app
-        run: |
-          cordova plugin add cordova-plugin-whitelist
+  - name: Configure Cordova
+    working-directory: app
+    run: |
+      python3 - <<'PY'
+      from pathlib import Path
 
-          sed -i 's#</widget>#<allow-navigation href="*" />\n<access origin="*" />\n</widget>#' config.xml
+      path = Path("config.xml")
+      text = path.read_text()
 
-      - name: Build APK
-        working-directory: app
-        run: cordova build android
+      insert = """
+          <allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />
+          <allow-navigation href="https://sapui5.hana.ondemand.com/*" />
+          <allow-navigation href="https://cdnjs.cloudflare.com/*" />
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: app-apk
-          path: app/platforms/android/app/build/outputs/apk/debug/*.apk
+          <access origin="http://ashd2sap.exalca.corp:8000" />
+          <access origin="https://sapui5.hana.ondemand.com" />
+          <access origin="https://cdnjs.cloudflare.com" />
+
+          <edit-config file="app/src/main/AndroidManifest.xml"
+                       mode="merge"
+                       target="/manifest/application">
+              <application
+                  xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:usesCleartextTraffic="true" />
+          </edit-config>
+      """
+
+      text = text.replace("</widget>", insert + "\n</widget>")
+      path.write_text(text)
+      PY
+
+  - name: Add Android platform
+    working-directory: app
+    run: |
+      cordova platform add android
+
+  - name: Build APK
+    working-directory: app
+    run: |
+      cordova build android
+
+  - name: Upload APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: app-apk
+      path: app/platforms/android/app/build/outputs/apk/debug/*.apk
+```

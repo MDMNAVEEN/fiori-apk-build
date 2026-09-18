@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="cl_columnshead sapUiSizeCompact "  verticalScrolling="false" contentHeight="70%" contentWidth="auto">
+	
+		<Toolbar class="sapUiTinyMargin cl_bordertool">
+			<SearchField placeholder="{i18n>SearchHere}" liveChange="fnFilterSearchHelp" class="cl_varsearch"/>
+		</Toolbar>
+		<VBox  fitContainer="true">
+			<ScrollContainer height="100%" vertical="true">
+			<Table id="id_searchhelpTable" items="{JM_F4Model>/rows}" mode="None" inset="false" fixedLayout="false" 
+				class="cl_f4table">
+				<headerToolbar >
+					<Toolbar visible="false">
+						<Title text="{i18n>F4Dialog}" level="H2"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column visible="{= !!${JM_F4Model>/labels/col1} }">
+						<Text text="{JM_F4Model>/labels/col1}"/>
+					</Column>
+					<Column visible="{= !!${JM_F4Model>/labels/col2} }">
+						<Text text="{JM_F4Model>/labels/col2}"/>
+					</Column>
+					<Column visible="{= !!${JM_F4Model>/labels/col3} }">
+						<Text text="{JM_F4Model>/labels/col3}"/>
+					</Column>
+					<Column visible="{= !!${JM_F4Model>/labels/col4} }">
+						<Text text="{JM_F4Model>/labels/col4}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active" press="fnF4Itempress">
+						<cells>
+							<Text text="{JM_F4Model>col1}" visible="{= !!${JM_F4Model>col1} }"/>
+							<Text text="{JM_F4Model>col2}" visible="{= !!${JM_F4Model>col2} }"/>
+							<Text text="{JM_F4Model>col3}" visible="{= !!${JM_F4Model>col3} }"/>
+							<Text text="{JM_F4Model>col4}" visible="{= !!${JM_F4Model>col4} }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</ScrollContainer>
+		</VBox>
+		<endButton>
+			<Button text="{i18n>Cancel}" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}" class="sapUiTinyMarginTopBottom sapUiSmallMarginEnd cl_secondaryBtn cl_focusbtn cl_iconBtn cl_commonbtn sapUiSizeCompact "
+				press="fnCloseSearchHelp"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

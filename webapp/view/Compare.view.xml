@@ -1,0 +1,155 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="MDM_QIR.controller.Compare"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:grid="sap.ui.layout">
+	<Page title="Title" showHeader="false" class="sapUiSizeCompact cl_background" enableScrolling="false">
+		<!--<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>-->
+		<OverflowToolbar height="3rem" class="cl_header sapUiLargeMarginBegin">
+			<Text text="{i18n>title}" class="cl_headerTitle sapUiTinyMarginBegin"/>
+			<HBox alignContent="Center" justifyContent="Center" alignItems="Center" height="1.8rem" class="sapUiMediumMarginBegin cl_headermenu">
+				<Button icon="{= ${JM_ImageModel>/path} + 'DashboardWhite.svg'}" text="{i18n>Dashboard}" tooltip="{i18n>Dashboard}" press="fnDashboard"
+					class="cl_iconBtn cl_focusbtn cl_tranBtn"/>
+				<Button icon="{= ${JM_ImageModel>/path} + 'Analyticchart.svg'}" text="{i18n>Analytics}" tooltip="{i18n>Analytics}" press="fnAnalytics"
+					class="cl_iconBtn cl_focusbtn cl_tranBtn sapUiSmallMarginBegin"/>
+				<Button icon="{= ${JM_ImageModel>/path} + 'ComparechartBlue.svg'}" text="{i18n>Compare}" tooltip="{i18n>Compare}" press="fnCompare"
+					class="cl_iconBtn cl_focusbtn cl_dashbtn sapUiTinyMarginBeginEnd"/>
+			</HBox>
+			<ToolbarSpacer/>
+			<HBox alignItems="Center">
+				<Select id="UID_APPID" selectedKey="Q" items="{JM_AppIdModel>/List}" class="cl_ar_combobox" width="9rem" change="fnDateRangevalidation">
+					<core:Item key="{JM_AppIdModel>DomvalueL}" text="{JM_AppIdModel>Ddtext}"/>
+				</Select>
+				<Label text="{i18n>From}" class="sapUiTinyMarginBeginEnd cl_userid_font"></Label>
+				<DatePicker id="DID_FDATE" displayFormat="dd.MM.yyyy" width="7rem" class="cl_ar_inputField" valueFormat="yyyy-MM-ddTHH:mm:ss"
+					change="fnDataLoad" placeholder=" "/>
+				<Label text="{i18n>To}" class="sapUiTinyMarginBegin cl_userid_font"></Label>
+				<DatePicker id="DID_TDATE" displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder=" " width="7rem" change="fnDataLoad"
+					class="sapUiTinyMarginBegin cl_ar_inputField"/>
+				<Select forceSelection="false" id="UID_CUSTOM" items="{JMDate>/}" class="sapUiTinyMarginBegin cl_ar_combobox" width="6rem"
+					change="fnDateSelection">
+					<core:Item key="{JMDate>Range}" text="{JMDate>Value}"/>
+				</Select>
+				<Label text="{JM_UserModel>/Sysid} - {JM_UserModel>/Uname}" class="cl_userid_font sapUiSmallMarginBeginEnd"/>
+				<Image src="{= ${JM_ImageModel>/path} + 'Companylogo.svg'}" class="sapUiSmallMarginEnd" width="1rem"></Image>
+			</HBox>
+		</OverflowToolbar>
+		<content>
+			<VBox class="cl_side">
+				<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>
+			</VBox>
+			<ScrollContainer height="100%" vertical="true" horizontal="false">
+				<VBox class="sapUiLargeMarginBegin">
+					<grid:Grid class="sapUiSmallMarginTopBottom sapUiTinyMarginBeginEnd">
+						<VBox class="cl_chartoutline ">
+							<Toolbar class="cl_bordertool sapUiTinyMarginTop">
+								<Image src="{= ${JM_ImageModel>/path} + 'OverAllReq.svg'}" width="1.6rem"/>
+								<Text text="{i18n>OveraAllReq}" class="cl_charttitle"/>
+								<ToolbarSpacer/>
+								<Text text="{i18n>TimeTaken}" class="cl_TextChartD"/>
+								<VBox height="1.5rem" class="cl_bgcolor" alignContent="Center" justifyContent="Center" alignItems="Center">
+									<Text id="id_totalavg" class="cl_TextCTitle sapUiTinyMarginBeginEnd"/>
+								</VBox>
+							</Toolbar>
+							<VBox class="sapUiTinyMarginBottom">
+								<core:HTML content="&lt;div id='idoverallchart' style='width:100%'&gt;&lt;/div&gt;"/>
+							</VBox>
+							<layoutData>
+								<grid:GridData span="L8 M12 S12"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<VBox class="cl_chartoutline ">
+								<Toolbar class="cl_bordertool sapUiTinyMarginTop">
+									<Image src="{= ${JM_ImageModel>/path} + 'DeptWise.svg'}" width="1.6rem"/>
+									<Text text="{i18n>DeptWise}" class="cl_charttitle"/>
+									<ToolbarSpacer/>
+									<MultiComboBox id="id_multiseldept" items="{JMDept>/}" width="9rem" selectionFinish="fnSelectDept"
+										class="cl_multicombobox cl_input cl_inputmain">
+										<core:Item key="{JMDept>Dept}" text="{JMDept>Dept}"/>
+									</MultiComboBox>
+								</Toolbar>
+								<VBox class="sapUiSmallMarginEnd">
+									<core:HTML content="&lt;div id='iddeptwise' style='width:100%'&gt;&lt;/div&gt;"/>
+								</VBox>
+							</VBox>
+							<VBox class="cl_chartoutline sapUiTinyMarginTop ">
+								<Toolbar class="cl_bordertool sapUiTinyMarginTop">
+									<Image src="{= ${JM_ImageModel>/path} + 'Finacial.svg'}" width="1.6rem"/>
+									<Text text="{i18n>Finacial}" class="cl_charttitle"/>
+								</Toolbar>
+								<VBox class="sapUiTinyMarginEnd">
+									<core:HTML content="&lt;div id='idFinacial' style='width:100%'&gt;&lt;/div&gt;"/>
+								</VBox>
+							</VBox>
+							<layoutData>
+								<grid:GridData span="L4 M12 S12"/>
+							</layoutData>
+						</VBox>
+						<VBox class="cl_chartoutline ">
+							<Toolbar class="cl_bordertool sapUiTinyMarginTop">
+								<Image src="{= ${JM_ImageModel>/path} + 'LevelSLA.svg'}" width="1.6rem"/>
+								<Text text="{i18n>DirectAPI}" class="cl_charttitle"/>
+							</Toolbar>
+							<VBox class="sapUiTinyMarginBottom">
+								<core:HTML content="&lt;div id='iddirectapi' style='width:100%'&gt;&lt;/div&gt;"/>
+							</VBox>
+							<layoutData>
+								<grid:GridData span="L4 M12 S12"/>
+							</layoutData>
+						</VBox>
+						<VBox class="cl_chartoutline ">
+							<Toolbar class="cl_bordertool sapUiTinyMarginTop">
+								<Image src="{= ${JM_ImageModel>/path} + 'RequestSLA.svg'}" width="1.6rem"/>
+								<Text text="{i18n>MonthYear}" class="cl_charttitle"/>
+								<ToolbarSpacer/>
+								<Select id="id_select" class="cl_ar_combobox" width="7rem" change="fnDataLoad">
+									<core:Item key="C" text="Creation"/>
+									<core:Item key="C" text="Creation"/>
+									<core:Item key="X" text="Change"/>
+									<core:Item key="E" text="Extension"/>
+									<core:Item key="B" text="Block"/>
+									<core:Item key="U" text="Unblock"/>
+								</Select>
+								<Select id="id_pyear" items="{JMPYear>/}" class="cl_ar_combobox" width="5rem" change="fnGetYEar">
+									<core:Item key="{JMPYear>Year}" text="{JMPYear>Year}"/>
+								</Select>
+								<Select id="id_cyear" items="{JMCYear>/}" class="cl_ar_combobox" width="5rem" change="fnGetYEar">
+									<core:Item key="{JMCYear>Year}" text="{JMCYear>Year}"/>
+								</Select>
+							</Toolbar>
+							<FlexBox alignItems="Start" justifyContent="SpaceBetween" class="sapUiSmallMarginBeginEnd">
+								<VBox>
+									<HBox alignItems="Center" justifyContent="Center">
+										<Text id="id_pyeartext" class="cl_TextYear"/>
+										<Button text="{i18n>LastYear}" class="sapUiTinyMarginBegin cl_focusbtn cl_lastyear"/>
+									</HBox>
+									<Text id="id_pyeartotal" text="Count" class="cl_TextCount"/>
+								</VBox>
+								<VBox alignItems="Center" class="sapUiSmallMarginTop">
+									<!--<ToolbarSpearator/>-->
+									<Image src="{= ${JM_ImageModel>/path} + 'Versus.svg'}" width="1.7rem"/>
+								</VBox>
+								<VBox alignItems="End" justifyContent="End">
+									<HBox alignItems="Center" justifyContent="Center">
+										<Button text="{i18n>CurrentYear}" class="sapUiTinyMarginEnd cl_lastyear"/>
+										<Text id="id_cyeartext" class="cl_TextYear"/>
+									</HBox>
+									<Text id="id_cyeartotal" text="Count" class="cl_TextCount"/>
+								</VBox>
+							</FlexBox>
+							<HBox >
+								<VBox class="sapUiTinyMarginBottom" width="50%">
+									<core:HTML content="&lt;div id='idPreviousYear' style='width:100%'&gt;&lt;/div&gt;"/>
+								</VBox>
+								<VBox class="sapUiTinyMarginBottom" width="50%">
+									<core:HTML content="&lt;div id='id_cyearchart' style='width:100%'&gt;&lt;/div&gt;"/>
+								</VBox>
+							</HBox>
+							<layoutData>
+								<grid:GridData span="L8 M12 S12"/>
+							</layoutData>
+						</VBox>
+					</grid:Grid>
+				</VBox>
+			</ScrollContainer>
+		</content>
+	</Page>
+</mvc:View>

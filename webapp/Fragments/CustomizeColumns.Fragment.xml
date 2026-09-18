@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:uitable="sap.ui.table">
+	<Dialog title="Customize Columns" contentWidth="10rem" class="cl_dlg cl_columndlg sapUiSizeCompact">
+		<!--<Input width="89%" liveChange="fn_SearchColumns" placeholder="Search Here"-->
+		<!--	class="cl_input sapUiSmallMarginTop sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginEnd"/>-->
+		<VBox class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop" width="89%">
+			<SearchField width="100%" class="cl_sfield_forf4 cl_sfield sapUiTinyMarginBegin sapUiTinyMarginTopBottom sapUiTinyMarginEnd"
+				placeholder="Search Here" liveChange="fn_SearchColumns"/>
+			<!--<Input class="cl_input cl_f4input sapUiSizeCompact sapUiTinyMarginBottom" id="id_searchf4" placeholder="Search..." liveChange="fn_matnrsearch"/>-->
+		</VBox>
+		<VBox class="cl_scrollon" width="100%">
+			<List id="idCustomizeList" items="{JM_TempColModel>/columns}" mode="MultiSelect"
+				class="cl_columnlist sapUiSizeCompact sapUiSmallMarginTop sapUiTinyMarginBottom ">
+				<headerToolbar class="sapUiSizeCompact ">
+					<Toolbar class="cl_column_toolbar sapUiSmallMarginBegin sapUiTinyMarginEnd sapUiSizeCompact " height="2rem">
+						<CheckBox class="cl_label" select="fn_SelectAllList" selected="true"/>
+						<Text text="Select All" class="cl_labellist"/>
+					</Toolbar>
+				</headerToolbar>
+				<items>
+					<StandardListItem title="{JM_TempColModel>label}" class="cl_gap sapUiSmallMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+						selected="{JM_TempColModel>visible}"/>
+				</items>
+			</List>
+		</VBox>
+		<buttons>
+			<Button text="{i18n>Cancel_btn}" tooltip="{i18n>Cancel_btn}" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}" press="fn_CloseCustomize" class="cl_secbtn cl_commonbtn sapUiSizeCompact"/>
+			<Button text="{i18n>Apply_btn}" tooltip="{i18n>Apply_btn}" icon="{= ${JM_ImageModel>/path} + 'DoubleTickIcon.svg'}" press="fn_ApplyColumns" class="cl_pribtn cl_commonbtn sapUiSizeCompact"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

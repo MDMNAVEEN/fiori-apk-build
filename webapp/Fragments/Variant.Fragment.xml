@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:uitable="sap.ui.table">
+	<!--<Dialog class="cl_dlg cl_dlgpage sapUiSizeCompact" contentWidth="22rem" title="{i18n>manview}">-->
+	<Dialog class="cl_DesDupDialog sapUiSizeCompact" showHeader="false" contentWidth="22rem" title="{i18n>manview}">
+		<customHeader>
+			<Toolbar class="cl_DupDialogToolbar" height="2.5rem">
+				<ToolbarSpacer/>
+				<Text text="{i18n>manview}" class=" sapUiTinyMarginTopBottom"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<HBox width="100%" class="sapUiTinyMarginTop" justifyContent="SpaceBetween">
+			<SearchField placeholder="Search variant" id="id_varname" width="95%" liveChange="fn_variantSearch"
+				class="cl_sfield cl_sfield_forvariant sapUiSmallMarginBegin"/>
+			<HBox justifyContent="Center" class="sapUiSmallMarginEnd" width="15%">
+				<Button icon="{= ${JM_ImageModel>/path} + 'PlusIcon.svg'}" tooltip="{i18n>Newvariant_btn}" press="fn_newVariant"
+					class="cl_nvariant cl_smallicon sapUiSizeCompact" width="48%"/>
+				<Button icon="{= ${JM_ImageModel>/path} + 'DeleteIcon.svg'}" tooltip="{i18n>Deletevariant_btn}" press="fn_deleteVariant"
+					class="cl_nvariant sapUiSizeCompact sapUiTinyMarginEnd" width="48%"/>
+			</HBox>
+		</HBox>
+		<uitable:Table id="idVariantTable" class="cl_table cl_vartable sapUiSmallMarginBeginEnd sapUiTinyMarginTop sapUiSmallMarginBottom"
+			rows="{JM_Variant>/variants}" selectionMode="Single" visibleRowCount="5">
+			<uitable:noData>
+				<VBox alignItems="Center" justifyContent="Center">
+					<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="130px" height="130px"/>
+					<Text text="{i18n>no_d_f}"/>
+				</VBox>
+			</uitable:noData>
+			<uitable:columns>
+				<uitable:Column>
+					<Label text="View Name"/>
+					<uitable:template>
+						<HBox>
+							<Input class="cl_varnameinp sapUiSizeCompact" id="id_variantname" value="{JM_Variant>VariantName}" visible="{= ${JM_Variant>isNew} }"
+								width="100%"/>
+							<Text text="{JM_Variant>VariantName}" visible="{= !${JM_Variant>isNew} }"/>
+						</HBox>
+					</uitable:template>
+				</uitable:Column>
+				<uitable:Column>
+					<Label text="Created By"/>
+					<uitable:template>
+						<Text text="{JM_UserModel>/0/Uname}"/>
+					</uitable:template>
+				</uitable:Column>
+			</uitable:columns>
+		</uitable:Table>
+		<buttons>
+			<Button text="{i18n>Cancel_btn}" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}" press="fn_closevariant"
+				class="cl_secbtn cl_commonbtn sapUiSizeCompact "/>
+			<Button text="{i18n>Save_btn}" icon="{= ${JM_ImageModel>/path} + 'SaveVarIcon.svg'}" press="fn_savevariant"
+				class="cl_pribtn sapUiSizeCompact"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

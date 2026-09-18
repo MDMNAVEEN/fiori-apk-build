@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Toolbar class="cl_headtoolbar"  alignItems="Center" >
+		<VBox class="sapUiTinyMarginBegin">
+			<Image src="{= ${JM_ImageModel>/path} + 'BackIcon.svg'}" tooltip="{i18n>back_btn}" id="id_backbtn" press="fn_NavBack" class="cl_backbtn sapUiSizeCompact sapUiLargeMarginBegin"/>
+		</VBox>
+		<HBox width="60%" alignItems="Center" id="id_headtxt">
+			<Text text="{i18n>header}" class="cl_headertxt" id="id_heading1"/>
+			<Text text="{i18n>master}" class="cl_headertxt sapUiTinyMarginBegin sapUiVisibleOnlyOnDesktop" id="id_heading2"/>
+		</HBox>
+		<ToolbarSpacer/>
+		<Text text="{JM_UserModel>/0/Uname} - {JM_UserModel>/0/Sysid}" class="cl_label"/>
+		<Image src="{= ${JM_ImageModel>/path} + 'Exalca.svg'}" class="cl_userimg"/>
+	</Toolbar>
+</core:FragmentDefinition>

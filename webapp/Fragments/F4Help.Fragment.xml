@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<Dialog title="{= ${F4Header>/col1} + ' (' + ${JM_F4Help>/data}.length + ')' }" class="cl_dlg cl_f4dlg cl_dlgpage sapUiSizeCompact"
+		draggable="true" afterOpen="fn_f4DialogAfterOpen">
+		<content>
+			<HBox justifyContent="Center">
+				<VBox class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop" width="90%">
+					<SearchField width="100%" class="cl_sfield_forf4 cl_sfield sapUiTinyMarginTopBottom" id="id_searchf4" placeholder="Search..."
+						liveChange="fn_matnrsearch"/>
+					<!--<Input class="cl_input cl_f4input sapUiSizeCompact sapUiTinyMarginBottom" id="id_searchf4" placeholder="Search..." liveChange="fn_matnrsearch"/>-->
+				</VBox>
+			</HBox>
+			<table:Table id="idF4Table" rows="{JM_F4Help>/data}" selectionMode="Single" selectionBehavior="RowOnly" rowSelectionChange="fn_f4rowSelect"
+				visibleRowCount="13" columnHeaderHeight="35" rowHeight="35" enableColumnReordering="false" enableColumnFreeze="false" enableSorting="false"
+				enableFiltering="false" class="cl_table cl_f4uitable sapUiTinyMarginTop">
+				<table:Column width="50%" visible="{= !!${F4Header>/col1} }">
+					<Label text="{F4Header>/col1}"/>
+					<table:template>
+						<Text text="{JM_F4Help>Value1}" class="cl_f4value"/>
+					</table:template>
+				</table:Column>
+				<table:Column width="50%">
+					<Label text="{F4Header>/col2}"/>
+					<table:template>
+						<Text text="{JM_F4Help>Value2}" class="cl_f4value"/>
+					</table:template>
+				</table:Column>
+				<table:Column width="25%" visible="{= !!${F4Header>/col3} }">
+					<Label text="{F4Header>/col3}"/>
+					<table:template>
+						<Text text="{JM_F4Help>Value3}"/>
+					</table:template>
+				</table:Column>
+				<!-- Column 4 -->
+				<table:Column width="25%" visible="{= !!${F4Header>/col4} }">
+					<Label text="{F4Header>/col4}"/>
+					<table:template>
+						<Text text="{JM_F4Help>Value4}"/>
+					</table:template>
+				</table:Column>
+			</table:Table>
+		</content>
+		<endButton>
+			<Button text="Cancel" tooltip="{i18n>Cancel_btn}" press="fn_closefromto" class="cl_secbtn cl_commonbtn sapUiSizeCompact" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

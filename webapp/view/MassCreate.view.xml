@@ -1,0 +1,195 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="MDM_QIR.controller.MassCreate"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:layout="sap.ui.layout" xmlns:uitable="sap.ui.table" xmlns:fi="sap.ui.unified">
+	<App>
+		<pages>
+			<Page showHeader="false" title="{i18n>search}" class="cl_page cl_initpage">
+				<content>
+					<VBox class="cl_side">
+						<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>
+					</VBox>
+					<core:Fragment fragmentName="MDM_QIR.Fragments.Header" type="XML"/>
+					<VBox width="100%" class="sapUiMediumMarginBegin sapUiTinyMarginTop cl_main">
+						<VBox class="sapUiMediumMarginBegin sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
+							<HBox class="cl_tabBar" justifyContent="SpaceBetween" alignItems="Center" width="100%" renderType="Bare">
+								<HBox class="cl_tabbtn" press="fn_search" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Start" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'SearchIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>search}" tooltip="{i18n>search}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_gotokeydata" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'StorageIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>keydata}" tooltip="{i18n>keydata}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_matdet" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabInitiator" class="cl_innerTab activeTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'NewInitiator.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>qinfo}" tooltip="{i18n>qinfo}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_reviewer" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabReviewer" class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'PasteIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>reviewer}" tooltip="{i18n>reviewer}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_approver" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabApprover" class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'ApproverIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>approver}" tooltip="{i18n>approver}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+							</HBox>
+						</VBox>
+					</VBox>
+					<VBox class="cl_mainscroll sapUiSmallMarginTop">
+						<VBox class="cl_search ">
+							<HBox class="cl_phbox ">
+								<Text text="{i18n>KeyData_Fields}" class="cl_headtxt2 sapUiTinyMarginTopBottom sapUiSmallMarginBegin"/>
+							</HBox>
+							<layout:Grid defaultSpan="L12 M12 S12" class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+								<VBox width="25%">
+									<Label text="{i18n>plant}" required="true" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="ID_QIR_WERKS" maxLength="4" valueHelpOnly="true" valueHelpRequest="fn_openF4" liveChange="fn_liveDataFetch" showValueHelp="true"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="ID_QIR_WERKSDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<HBox justifyContent="SpaceBetween" width="27%">
+									<Button icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}" press="fnDownloadMassTemplate"
+										class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiSizeCompact" enabled="{JM_EnableModel>/enable}"/>
+									<HBox justifyContent="Center" alignItems="Center">
+										<Input id="id_fileNameInput" placeholder="Select File" value="{/uploadedFileName}" class="cl_input cl_mass_input sapUiSizeCompact"
+											valueHelpRequest="fnTemplateUpload" showValueHelp="true" enabled="{JM_EnableModel>/enable}"/>
+										<fi:FileUploader id="FileUploaderId" change="fnTemplateFileSelect" uploadOnChange="false"
+											fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf" class="cl_fileupload"/>
+									</HBox>
+									<Button text="Upload" tooltip="Upload Seq. File" class="cl_pribtn sapUiSizeCompact" press="fnExcelUpload"
+										icon="{= ${JM_ImageModel>/path} + 'UploadIconWhite.svg'}" enabled="{JM_EnableModel>/enable}"/>
+								</HBox>
+							</layout:Grid>
+						</VBox>
+						<VBox class="cl_search sapUiSmallMarginTop " visible="{JM_EnableTable>/enable}">
+							<layout:Grid defaultSpan="L4 M12 S12">
+								<OverflowToolbar class="cl_toolbar_padremove cl_gap">
+									<Text text="{i18n>rlist}" class="cl_headtxt2 "/>
+									<Text id="id_countText" text="(0)" class="cl_uwlCount sapUiTinyMarginBegin"/>
+								</OverflowToolbar>
+								<OverflowToolbar class="cl_toolbar_padremove ">
+									<layoutData>
+										<layout:GridData span="L8 M7 S12"/>
+									</layoutData>
+									<ToolbarSpacer/>
+									<Button enabled="{JM_EnableModel>/enable}" class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd"
+										tooltip="{i18n>addrow_btn}" press="fnAddRow" icon="{= ${JM_ImageModel>/path} + 'PlusIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+									<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" tooltip="{i18n>addrow_btn}" press="fnDeleteRow"
+										icon="{= ${JM_ImageModel>/path} + 'DeleteIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+									<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" tooltip="{i18n>Download_btn}" press="fn_DownloadExcel"
+										icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+									<Button class="cl_expand sapUiTinyMarginBeginEnd sapUiSizeCompact" id="id_expandbtn" tooltip="{i18n>Expand_btn}" press="fn_expandtable"
+										icon="{= ${JM_ImageModel>/path} + 'ExpandIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+								</OverflowToolbar>
+								<layout:Grid id="id_Error_download_box" hSpacing="0" visible="false" defaultSpan="L12 M12 S12">
+									<VBox height="auto" class="sapUiTinyMarginBottom sapUiSmallMarginBegin">
+										<HBox class="cl_pannelHead" justifyContent="SpaceBetween" alignItems="Center">
+											<Label text="{i18n>Error Excel Download}" class="sapUiSmallMargin cl_pannelTitleFont"/>
+											<layoutData>
+												<layout:GridData span="L7 M7 S12"/>
+											</layoutData>
+										</HBox>
+										<layout:Grid class="cl_kd_grid">
+											<OverflowToolbar class="cl_Error_download_toolbar">
+												<Link text="Mass Bom Error Details" press=".onDownloadErrorExcel" class="sapUiTinyMarginBegin cl_Error_downloadLink"/>
+												<layoutData>
+													<layout:GridData span="L12 M12 S12"/>
+												</layoutData>
+											</OverflowToolbar>
+										</layout:Grid>
+										<layoutData>
+											<layout:GridData span="L12 M12 S12"/>
+										</layoutData>
+									</VBox>
+								</layout:Grid>
+							</layout:Grid>
+							<VBox justifyContent="Center" class='sapUiSmallMarginBeginEnd '>
+								<uitable:Table id="idDynamicTable" rows="{JM_TableModel>/Rows}" fixedColumnCount="4" class="cl_table sapUiSmallMarginBottom"
+									visibleRowCount="5" width="100%" enableColumnResize="true">
+									<uitable:noData>
+										<VBox alignItems="Center" justifyContent="Center" height="100%">
+											<!--<Image src="{= ${JM_ImageModel>/path} + 'Nodatafound.gif'}" width="150px" height="150px"/>-->
+											<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="130px" height="130px"/>
+											<Text text="No Data Found" class="cl_label"/>
+										</VBox>
+									</uitable:noData>
+								</uitable:Table>
+							</VBox>
+						</VBox>
+						<VBox class="cl_search sapUiSmallMarginTop sapUiSmallMarginBottom ">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>comments}" class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>
+								<!--<Text text="{i18n>comments}"-->
+								<!--	visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"-->
+								<!--	class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>-->
+							</HBox>
+							<VBox justifyContent="Center" class="sapUiSmallMargin">
+								<TextArea width="100%" id="id_textarea" rows="3" class="cl_textarea "></TextArea>
+							</VBox>
+							<VBox id="id_comments" width="100%" class="sapUiSmallMarginBegin"></VBox>
+						</VBox>
+					</VBox>
+					<!--</VBox>-->
+					<OverflowToolbar class="cl_footerBar sapUiTinyMarginBegin ">
+						<HBox class="sapUiTinyMarginBegin">
+							<Button id="messagePopoverBtn" icon="sap-icon://message-error"
+								visible="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonVisible' }"
+								tooltip="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonText' }"
+								text="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonText' }" press=".handleMessagePopoverPress"
+								class="cl_errorbuttonPopover sapUiLargeMarginBegin"/>
+							<!--<Button id="messagePopoverBtn" class="cl_errorbuttonPopover sapUiLargeMarginBegin"/>-->
+						</HBox>
+						<ToolbarSpacer/>
+						<Button tooltip="{i18n>reject}" text="{i18n>reject}" icon="{= ${JM_ImageModel>/path} + 'RejectW.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A' }" press="fnReject" class="cl_secbtn sapUiSizeCompact"/>
+						<Button tooltip="{i18n>sendback}" text="{i18n>sendback}" icon="{= ${JM_ImageModel>/path} + 'SendbackW.svg'}"
+							visible="{= (${JM_LevelModel>/level} === 'R' &amp;&amp; ${JM_LevelModel>/sendback} !== 'X') || ${JM_LevelModel>/level} === 'A' }"
+							class="cl_secbtn sapUiSizeCompact" press="fnSendback"/>
+						<Button tooltip="{i18n>saveasdarft}" text="{i18n>saveasdarft}" icon="{= ${JM_ImageModel>/path} + 'SaveVarIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ${JM_LevelModel>/sendback} !== 'X' &amp;&amp; !${JM_FromModel>/fromDashboard} }"
+							press="fn_saveasdraftconfirmation" class="cl_secbtn sapUiSizeCompact"/>
+						<!--<Button tooltip="{i18n>changelog_btn}" text="{i18n>changelog_btn}" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}" press="fnChangelog"-->
+						<!--	class="cl_secbtn sapUiSizeCompact" visible="{= ${JM_LevelModel>/AppId} === 'QIRX' || ${JM_ContextModel>/Appid} === 'QIRX'}"/>-->
+						<Button tooltip="{i18n>submit}" text="{i18n>submit}" icon="{= ${JM_ImageModel>/path} + 'SubmitIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A' }" press="fn_validateAndSubmitMass"
+							class="cl_pribtn sapUiSizeCompact"/>
+						<Button tooltip="{i18n>submit}" text="{i18n>submit}" icon="{= ${JM_ImageModel>/path} + 'SubmitIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+							press="fn_validateAndSubmitMass" class="cl_pribtn sapUiSizeCompact"/>
+					</OverflowToolbar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

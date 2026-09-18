@@ -1,0 +1,370 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="MDM_QIR.controller.Search"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:layout="sap.ui.layout" xmlns:uitable="sap.ui.table">
+	<App>
+		<pages>
+			<Page showHeader="false" title="{i18n>search}" class="cl_page">
+				<content>
+					<VBox class="cl_side">
+						<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>
+					</VBox>
+					<core:Fragment fragmentName="MDM_QIR.Fragments.Header" type="XML"/>
+					<VBox width="100%" class="sapUiMediumMarginBegin sapUiTinyMarginTop cl_main">
+						<VBox class="sapUiMediumMarginBegin sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
+							<HBox class="cl_tabBar" justifyContent="SpaceBetween" alignItems="Center" width="100%" renderType="Bare">
+								<HBox class="cl_tabbtn" press="fn_search" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab activeTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'SearchIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>search}" tooltip="{i18n>search}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_gotokeydata" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'StorageIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>keydata}" tooltip="{i18n>keydata}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_matdet" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'NewInitiator.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>qinfo}" tooltip="{i18n>qinfo}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_reviewer" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'PasteIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>reviewer}" tooltip="{i18n>reviewer}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_approver" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'ApproverIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>approver}" tooltip="{i18n>approver}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+							</HBox>
+						</VBox>
+						<VBox class="cl_search sapUiSmallMarginTop sapUiMediumMarginBegin sapUiLargeMarginEnd" visible="{= !${JM_expandModel>/expand} }">
+							<layout:Grid defaultSpan="L3 M6 S12" class="sapUiTinyMarginBeginEnd" hSpacing="1" vSpacing="0">
+								<!--<HBox justifyContent="Start" class="sapUiTinyMarginTop">-->
+								<OverflowToolbar class="cl_svariant_toolbar ">
+									<layoutData>
+										<layout:GridData span="L7 M5 S12"/>
+									</layoutData>
+									<HBox alignItems="Center">
+										<VBox class="cl_separatorline "></VBox>
+										<Text text="{i18n>bsearch}" class="cl_headtxt "/>
+									</HBox>
+								</OverflowToolbar>
+								<!--</HBox>-->
+								<!--<HBox justifyContent="End">-->
+								<OverflowToolbar class="cl_svariant_toolbar ">
+									<layoutData>
+										<layout:GridData span="L5 M7 S12"/>
+									</layoutData>
+									<ToolbarSpacer/>
+									<HBox >
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+										<VBox class="cl_separatorline cl_search_separator"/>
+										<Text text="{i18n>svariant}" class="cl_headtxt cl_headtxtmargin sapUiTinyMarginTopBottom sapUiSizeCompact"/>
+									</HBox>
+									<Select id="idVariantCombo" class="cl_selectBox sapUiTinyMarginBegin sapUiTinyMarginTopBottom sapUiSizeCompact" selectedKey=""
+										change="fn_VariantSelect" items="{ path: 'JM_Variant>/ComboBoxvariants' }">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="Low"/>
+										</layoutData>
+										<core:Item key="{JM_Variant>VariantName}" text="{= ${JM_Variant>text} || ${JM_Variant>VariantName} }"/>
+									</Select>
+									<Button icon="{= ${JM_ImageModel>/path} + 'NewVariantIcon.svg'}" tooltip="{i18n>create_modify_btn}"
+										class="cl_nvariant cl_newvariant sapUiTinyMarginBegin sapUiSizeCompact" press="fn_openvariant">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+								</OverflowToolbar>
+								<VBox>
+									<Label text="{i18n>matno}" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input showValueHelp="true" maxLength="18" liveChange="fn_liveDataFetch" valueHelpRequest="fn_openF4" id="SID_QIR_MATNR"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_MATNRDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>revlev}" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="SID_QIR_REVLV" liveChange="fn_liveDataFetch" class="cl_input cl_inputrev sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_DES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>vendor}" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="SID_QIR_LIFNR" maxLength="10" liveChange="fn_liveDataFetch" showValueHelp="true" valueHelpRequest="fn_openF4"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_LIFNRDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>plant}" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="SID_QIR_WERKS" maxLength="4" liveChange="fn_liveDataFetch" valueHelpRequest="fn_openF4" showValueHelp="true"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_WERKSDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<OverflowToolbar class="cl_toolbar_padremove">
+									<layoutData>
+										<layout:GridData span="L12 M12 S12"/>
+									</layoutData>
+									<ToolbarSpacer/>
+									<RadioButtonGroup columns="2" id="idAndOrGroup" class="sapUiSizeCompact cl_radio sapUiSmallMarginEnd">
+										<buttons>
+											<RadioButton text="AND">
+												<customData>
+													<core:CustomData key="key" value="AND"/>
+												</customData>
+											</RadioButton>
+											<RadioButton text="OR">
+												<customData>
+													<core:CustomData key="key" value="OR"/>
+												</customData>
+											</RadioButton>
+										</buttons>
+									</RadioButtonGroup>
+									<Button text="{i18n>clearall}" press="fnClearPress" class="sapUiSizeCompact cl_secbtn" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}"/>
+									<Button text="{i18n>searchtxt}" press="fn_search" class="sapUiSizeCompact sapUiTinyMarginBegin cl_pribtn"
+										icon="{= ${JM_ImageModel>/path} + 'SearchIconBtn.svg'}"/>
+								</OverflowToolbar>
+								<!--<HBox justifyContent="End" alignItems="Center">-->
+								<!--	<OverflowToolbar >-->
+								<!--		<layoutData >-->
+								<!--			<layout:GridData span="L12 M12 S12"/>-->
+								<!--		</layoutData>-->
+								<!--<Button text="{i18n>adsearch}" press="fn_adsearch" class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiSizeCompact cl_adsearchbtn"-->
+								<!--	icon="{= ${JM_ImageModel>/path} + 'AdsearchIcon.svg'}" iconFirst="false"/>-->
+								<!--<HBox>-->
+								<!--		<HBox height="26px" justifyContent="Center" alignContent="Center" alignItems="Center">-->
+								<!--			<RadioButtonGroup columns="2" id="idAndOrGroup" class="sapUiSizeCompact cl_radio sapUiSmallMarginEnd">-->
+								<!--				<RadioButton text="AND">-->
+								<!--					<customData>-->
+								<!--						<core:CustomData key="key" value="AND"/>-->
+								<!--					</customData>-->
+								<!--				</RadioButton>-->
+								<!--				<RadioButton text="OR">-->
+								<!--					<customData>-->
+								<!--						<core:CustomData key="key" value="OR"/>-->
+								<!--					</customData>-->
+								<!--				</RadioButton>-->
+								<!--			</RadioButtonGroup>-->
+								<!--		</HBox>-->
+								<!--</HBox>-->
+								<!--		<Button text="{i18n>clearall}" press="fn_clearFields" class="sapUiSizeCompact cl_secbtn" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}"/>-->
+								<!--		<Button text="{i18n>searchtxt}" press="fn_search" class="sapUiSizeCompact sapUiTinyMarginBegin cl_pribtn" icon="{= ${JM_ImageModel>/path} + 'SearchIconBtn.svg'}"/>-->
+								<!--	</OverflowToolbar>-->
+								<!--</HBox>-->
+							</layout:Grid>
+						</VBox>
+						<layout:Grid class="cl_search sapUiSmallMarginTop sapUiMediumMarginBegin sapUiLargeMarginEnd" hSpacing="0" vSpacing="0"
+							defaultSpan="L12 M12 S12">
+							<layout:Grid class="cl_stablecontent sapUiTinyMarginTopBot sapUiTinyMarginBeginEnd" defaultSpan="L4 M5 S12" vSpacing="0">
+								<!--<HBox alignItems="Center" class="cl_gap">-->
+								<OverflowToolbar class="cl_toolbar_padremove cl_gap">
+									<Button icon="{= ${JM_ImageModel>/path} + 'FilterIcon.svg'}" tooltip="{i18n>tablefilter_btn}"
+										class="cl_filterbtn cl_filbtn sapUiSizeCompact" press="fn_openpopover"/>
+									<Text text="{i18n>rlist}" class="cl_headtxt2 "/>
+									<Text id="id_countText" text="(0)" class="cl_uwlCount sapUiTinyMarginBegin"/>
+								</OverflowToolbar>
+								<!--</HBox>-->
+								<!--<HBox justifyContent="End" alignItems="Center">-->
+								<!--	<layoutData >-->
+								<!--		<layout:GridData span="L8 M7 S12"/>-->
+								<!--	</layoutData>-->
+								<!--	<VBox class="sapUiTinyMarginEnd" width="250px">-->
+								<!--		<SearchField width="100%" placeholder="{i18n>shere}" tooltip="{i18n>shere}" class="cl_sfield cl_sfieldrlist sapUiSizeCompact"-->
+								<!--			liveChange="fn_GlobalSearch"/>-->
+								<!--	</VBox>-->
+								<!--	<m:MenuButton text="{i18n>cn}" tooltip="{i18n>createnew_btn}" icon="{= ${JM_ImageModel>/path} + 'NewFileIcon.svg'}"-->
+								<!--		class="cl_menubtn sapUiTinyMarginBeginEnd sapUiSizeCompact noFocusBtn" xmlns:m="sap.m">-->
+								<!--		<m:menu>-->
+								<!--			<m:Menu>-->
+								<!--				<m:MenuItem class="cl_newbtn1" text="Create New" press="fn_gotokeydata"/>-->
+								<!--				<m:MenuItem class="cl_newbtn1" text="Update" press="onUpdatePress"/>-->
+								<!--			</m:Menu>-->
+								<!--		</m:menu>-->
+								<!--	</m:MenuButton>-->
+								<!--	<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" tooltip="{i18n>Download_btn}" press="fn_DownloadExcel"-->
+								<!--		icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}"/>-->
+								<!--	<Button class="cl_expand sapUiTinyMarginBeginEnd sapUiSizeCompact" id="id_expandbtn" tooltip="{i18n>Expand_btn}" press="fn_expandtable"-->
+								<!--		icon="{= ${JM_ImageModel>/path} + 'ExpandIcon.svg'}"/>-->
+								<!--</HBox>-->
+								<OverflowToolbar class="cl_toolbar_padremove ">
+									<layoutData>
+										<layout:GridData span="L8 M7 S12"/>
+									</layoutData>
+									<ToolbarSpacer/>
+									<SearchField width="auto" placeholder="{i18n>shere}" tooltip="{i18n>shere}"
+										class="cl_sfield cl_sfieldrlist sapUiTinyMarginBeginEnd sapUiSizeCompact" liveChange="fn_GlobalSearch">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</SearchField>
+									<MenuButton text="{i18n>createnew_btn}" tooltip="{i18n>createnew_btn}" icon="{= ${JM_ImageModel>/path} + 'NewFileIcon.svg'}"
+										class="cl_menubtn sapUiTinyMarginBeginEnd sapUiSizeCompact noFocusBtn">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="Low"/>
+										</layoutData>
+										<menu>
+											<Menu>
+												<MenuItem text="Create" press="fn_gotokeydata"/>
+												<MenuItem text="Change" press="fn_changeqir"/>
+												<MenuItem text="Copy" press="fn_copyqir"/>
+											</Menu>
+										</menu>
+									</MenuButton>
+									<MenuButton text="{i18n>Mass_btn}" tooltip="{i18n>mass_btn}" icon="{= ${JM_ImageModel>/path} + 'NewFileIcon.svg'}"
+										class="cl_menubtn sapUiTinyMarginBeginEnd sapUiSizeCompact noFocusBtn">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="Low"/>
+										</layoutData>
+										<menu>
+											<Menu>
+												<MenuItem text="Create" press="fn_gotomasscreate"/>
+												<MenuItem text="Change" press="fn_gotomasschange"/>
+											</Menu>
+										</menu>
+									</MenuButton>
+									<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" tooltip="{i18n>Download_btn}" press="fn_DownloadExcel"
+										icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+									<Button class="cl_expand sapUiTinyMarginBeginEnd sapUiSizeCompact" id="id_expandbtn" tooltip="{i18n>Expand_btn}" press="fn_expandtable"
+										icon="{= ${JM_ImageModel>/path} + 'ExpandIcon.svg'}">
+										<layoutData>
+											<OverflowToolbarLayoutData priority="High"/>
+										</layoutData>
+									</Button>
+								</OverflowToolbar>
+							</layout:Grid>
+							<layout:Grid class="cl_uitable sapUiTinyMarginBeginEnd" defaultSpan="L12 M12 S12">
+								<VBox height="290px" width="100%" id="id_maintable">
+									<uitable:Table id="idMaterialTable" class="cl_table" selectionBehavior="Row" rows="{JM_Model>/data}" visibleRowCount="7"
+										selectionMode="Single" width="100%" enableColumnResize="true">
+										<uitable:noData>
+											<VBox alignItems="Center" justifyContent="Center" height="100%">
+												<!--<Image src="{= ${JM_ImageModel>/path} + 'Nodatafound.gif'}" width="150px" height="150px"/>-->
+												<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="150px" height="150px"/>
+												<Text text="No Data Found" class="cl_label"/>
+											</VBox>
+										</uitable:noData>
+										<uitable:columns>
+											<uitable:Column label="{i18n>matno}" class="cl_labeltbl" visible="{JM_ColModel>/columns/0/visible}" filterProperty="Matnr"
+												tooltip="{i18n>matno}">
+												<uitable:template>
+													<HBox class="cl_gap cl_imagebox">
+														<Image src="{= ${JM_ImageModel>/path} + 'Circle.svg'}" width="14px" class="cl_image"/>
+														<Link text="{JM_Model>Matnr}" class="cl_link" wrapping="{view>/wrapText}" press="onLinkPress"/></HBox>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>cnt}" class="cl_labeltbl" visible="{JM_ColModel>/columns/1/visible}" filterProperty="Count"
+												tooltip="{i18n>cnt}">
+												<uitable:template>
+													<Text text="{JM_Model>Count}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>cre}" class="cl_labeltbl" visible="{JM_ColModel>/columns/2/visible}" filterProperty="Ersteller"
+												tooltip="{i18n>cre}">
+												<uitable:template>
+													<Text text="{JM_Model>Ersteller}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>vendor}" class="cl_labeltbl" visible="{JM_ColModel>/columns/3/visible}" filterProperty="Leiferant"
+												tooltip="{i18n>vendor}">
+												<uitable:template>
+													<Text text="{JM_Model>Leiferant}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>plant}" class="cl_labeltbl" visible="{JM_ColModel>/columns/4/visible}" filterProperty="Werk"
+												tooltip="{i18n>plant}">
+												<uitable:template>
+													<Text text="{JM_Model>Werk}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>rdate}" class="cl_labeltbl" visible="{JM_ColModel>/columns/5/visible}" filterProperty="RDate"
+												tooltip="{i18n>rdate}">
+												<uitable:template>
+													<Text text="{path:'JM_Model>RDate', formatter:'MDM_QIR.Formatter.formatter.formatDate'}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>qr}" class="cl_labeltbl" visible="{JM_ColModel>/columns/6/visible}" filterProperty="QRelease"
+												tooltip="{i18n>qr}">
+												<uitable:template>
+													<Text text="{JM_Model>QRelease}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>qact}" class="cl_labeltbl" visible="{JM_ColModel>/columns/7/visible}" filterProperty="QActive"
+												tooltip="{i18n>qact}">
+												<uitable:template>
+													<Text text="{JM_Model>QActive}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>qorder}" class="cl_labeltbl" visible="{JM_ColModel>/columns/8/visible}" filterProperty="QOrder"
+												tooltip="{i18n>qorder}">
+												<uitable:template>
+													<Text text="{JM_Model>QOrder}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>qassur}" class="cl_labeltbl" visible="{JM_ColModel>/columns/9/visible}" filterProperty="QAssur"
+												tooltip="{i18n>qassur}">
+												<uitable:template>
+													<Text text="{JM_Model>QAssur}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>insp}" class="cl_labeltbl" visible="{JM_ColModel>/columns/10/visible}" filterProperty="Insp"
+												tooltip="{i18n>insp}">
+												<uitable:template>
+													<Text text="{JM_Model>Insp}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>qsys}" class="cl_labeltbl" visible="{JM_ColModel>/columns/11/visible}" filterProperty="QmSys"
+												tooltip="{i18n>qsys}">
+												<uitable:template>
+													<Text text="{JM_Model>QmSys}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>objnum}" class="cl_labeltbl" visible="{JM_ColModel>/columns/12/visible}" filterProperty="Objnum"
+												tooltip="{i18n>objnum}">
+												<uitable:template>
+													<Text text="{JM_Model>Objnum}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>ltime}" class="cl_labeltbl" visible="{JM_ColModel>/columns/13/visible}" filterProperty="Ltime"
+												tooltip="{i18n>ltime}">
+												<uitable:template>
+													<Text text="{JM_Model>Ltime}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>revlv}" class="cl_labeltbl" visible="{JM_ColModel>/columns/14/visible}" filterProperty="Revlv"
+												tooltip="{i18n>revlv}">
+												<uitable:template>
+													<Text text="{JM_Model>Revlv}" class="cl_label" wrapping="{view>/wrapText}"/>
+												</uitable:template>
+											</uitable:Column>
+										</uitable:columns>
+									</uitable:Table>
+								</VBox>
+							</layout:Grid>
+						</layout:Grid>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

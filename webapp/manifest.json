@@ -1,0 +1,274 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "MDM_QIR",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"MDM_CONFIG_SRV": {
+				"uri": "/sap/opu/odata/exl/MDM_CONFIG_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"MDM_QIR_SRV": {
+				"uri": "/sap/opu/odata/exl/MDM_QIR_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/MDM_QIR_SRV/metadata.xml"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZMDM_QIR",
+					"action": "display"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "MDM_QIR.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {},
+				"sap.ui.export": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "MDM_QIR.i18n.i18n"
+				}
+			},
+			"JM_UserModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "MDM_QIR_SRV",
+				"preload": true
+			},
+			"JM_ContextModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"JM_Config": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "MDM_CONFIG_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}, {
+				"uri": "css/KeyData_Style.css"
+			}, {
+				"uri": "css/Fragment_Style.css"
+			}, {
+				"uri": "css/UWL.css"
+			}, {
+				"uri": "css/Dashboard.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "MDM_QIR.view",
+				"controlId": "id_search"
+			},
+			"targets": {
+				"Search": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Search",
+					"viewLevel": 1,
+					"controlAggregation": "pages"
+				},
+				"KeyData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "KeyData",
+					"viewLevel": 2,
+					"controlAggregation": "pages"
+				},
+				"Initiator": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Initiator",
+					"viewLevel": 3,
+					"controlAggregation": "pages"
+				},
+				"Dashboard": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Dashboard",
+					"viewLevel": 4,
+					"controlAggregation": "pages"
+				},
+				"UWL": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "UWL",
+					"viewLevel": 5,
+					"controlAggregation": "pages"
+				},
+				"Analytics": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Analytics",
+					"viewLevel": 6,
+					"controlAggregation": "pages"
+				},
+				"Compare": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Compare",
+					"viewLevel": 7,
+					"controlAggregation": "pages"
+				},
+				"MassCreate": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "MassCreate",
+					"viewLevel": 8,
+					"controlAggregation": "pages"
+				},
+				"MassChange": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "MassChange",
+					"viewLevel": 9,
+					"controlAggregation": "pages"
+				}
+			},
+			"routes": [{
+				"name": "Search",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Search"]
+			}, {
+				"name": "KeyData",
+				"pattern": "KeyData",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["KeyData"]
+			}, {
+				"name": "Initiator",
+				"pattern": "Initiator",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Initiator"]
+			}, {
+				"name": "Dashboard",
+				"pattern": "Dashboard",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Dashboard"]
+			}, {
+				"name": "UWL",
+				"pattern": "UWL",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["UWL"]
+			}, {
+				"name": "Analytics",
+				"pattern": "Analytics",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Analytics"]
+			}, {
+				"name": "Compare",
+				"pattern": "Compare",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Compare"]
+			}, {
+				"name": "MassCreate",
+				"pattern": "MassCreate",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["MassCreate"]
+			}, {
+				"name": "MassChange",
+				"pattern": "MassChange",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["MassChange"]
+			}]
+		}
+	}
+}

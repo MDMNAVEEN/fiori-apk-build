@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<VBox class="cl_sidenav">
+		<VBox class="cl_sideheadbox">
+			<HBox width="170px" height="40px" class="cl_mdmlogown">
+				<Image src="{= ${JM_ImageModel>/path} + 'ComNamelogo.svg'}" width="170px" height="40px" class="cl_logown"/>
+			</HBox>
+			<HBox width="50px" height="40px" class="cl_mdmlogo">
+				<Image src="{= ${JM_ImageModel>/path} + 'Companylogo.svg'}" width="50px" height="40px" class="cl_logo"/>
+			</HBox>
+		</VBox>
+		<List class="cl_list sapUiTinyMarginBegin" id="id_list" mode="SingleSelectMaster" selectionChange="fn_SelectionChange">
+			<items>
+				<StandardListItem class="cl_icon sapUiTinyMarginTopBottom sapUiSmallMarginEnd" title="{i18n>dboard}" icon="{= ${JM_ImageModel>/path} + 'MenuIcon.svg'}">
+					<customData>
+						<core:CustomData key="target" value="Dashboard"/>
+					</customData>
+				</StandardListItem>
+				<StandardListItem class="cl_icon sapUiTinyMarginTopBottom sapUiSmallMarginEnd" title="{i18n>uwlist}" icon="{= ${JM_ImageModel>/path} + 'ChartIcon.svg'}">
+					<customData>
+						<core:CustomData key="target" value="UWL"/>
+					</customData>
+				</StandardListItem>
+				<StandardListItem class="cl_icon   sapUiTinyMarginTopBottom sapUiSmallMarginEnd" title="{i18n>qirmaster}" icon="{= ${JM_ImageModel>/path} + 'ListBoxIcon.svg'}">
+					<customData>
+						<core:CustomData key="target" value="Search"/>
+					</customData>
+				</StandardListItem>
+				<StandardListItem class="cl_icon sapUiTinyMarginTopBottom sapUiSmallMarginEnd" title="{i18n>ticket}" icon="{= ${JM_ImageModel>/path} + 'Ticket.svg'}">
+					<customData>
+						<core:CustomData key="target" value="Ticket"/>
+					</customData>
+				</StandardListItem>
+				<!--<StandardListItem class="cl_icon sapUiTinyMarginTopBottom sapUiSmallMarginEnd" title="{i18n>rengine}" icon="{= ${JM_ImageModel>/path} + 'rulesengineIcon.svg'}">-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="type" value="external"/>-->
+				<!--		<core:CustomData key="target" value=""/>-->
+				<!--	</customData>-->
+				<!--</StandardListItem>-->
+			</items>
+		</List>
+		<VBox class="sapUiLargeMarginTop cl_exal">
+			<Image src="{= ${JM_ImageModel>/path} + 'Exalcawn.svg'}" width="170px" height="40px" class="cl_logown"/>
+			<Image src="{= ${JM_ImageModel>/path} + 'Exalca.svg'}" width="50px" height="40px" class="cl_logo"/>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

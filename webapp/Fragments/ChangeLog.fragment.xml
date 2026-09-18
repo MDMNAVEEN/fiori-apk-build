@@ -1,0 +1,132 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:grid="sap.ui.layout">
+	<Dialog showHeader="false" class="cl_columnshead sapUiSizeCompact cl_footercust" verticalScrolling="false" contentWidth="auto">
+		<grid:Grid defaultSpan=" L2 M6 S12" class="sapUiTinyMarginTop" visible="{JMVisiblity>/Visible}">
+			<VBox class="sapUiTinyMarginTop">
+				<Text text="{i18n>ChangeLogDet}" class="cl_cardValue sapUiTinyMarginBegin"/>
+				<layoutData>
+					<grid:GridData span=" L4 M6 S12"/>
+				</layoutData>
+			</VBox>
+			<HBox width="100%">
+				<VBox width="50%" class="sapUiSmallMarginEnd">
+					<Text text="{i18n>Category}" class="cl_label"/>
+					<ComboBox id="id_dfielddet" width="100%" class="cl_input cl_inputmain" items="{JMFieldDet>/}">
+						<core:Item key="{JMFieldDet>Fnm}" text="{JMFieldDet>FmmDes}"/>
+					</ComboBox>
+				</VBox>
+				<VBox width="50%">
+					<Text text="{i18n>FromDate}" class="cl_label"/>
+					<DatePicker id="id_dfdate" displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-ddTHH:mm:ss" class="cl_input cl_inputmain"/>
+				</VBox>
+				<layoutData>
+					<grid:GridData span=" L3 M6 S12"/>
+				</layoutData>
+			</HBox>
+			<HBox width="100%">
+				<VBox width="50%" class="sapUiSmallMarginEnd">
+					<Text text="{i18n>ToDate}" class="cl_label"/>
+					<DatePicker id="id_dtdate" displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-ddTHH:mm:ss" class="cl_input cl_inputmain"/>
+				</VBox>
+				<VBox width="50%">
+					<Text text="{i18n>CustomFilter}" class="cl_label"/>
+					<Select forceSelection="false" items="{JMDate>/}" id="id_changecustom" class="cl_ar_combobox" change="fnChangeLogSelection">
+						<core:Item key="{JMDate>Range}" text="{JMDate>Value}"/>
+					</Select>
+				</VBox>
+				<layoutData>
+					<grid:GridData span=" L3 M6 S12"/>
+				</layoutData>
+			</HBox>
+			<VBox width="100%" class="sapUiSmallMarginTop sapUiSmallMarginEnd">
+				<HBox >
+					<Button icon="{= ${JM_ImageModel>/path} + 'ClearDB.svg'}" text="{i18n>Clear}" press="fnChangeRepClear" width="5rem"
+						class="cl_secondaryBtn cl_iconBtn cl_focusbtn sapUiTinyMarginEnd"/>
+					<Button icon="{= ${JM_ImageModel>/path} + 'SearchBtnDB.svg'}" text="{i18n>Search}" press="fnChangeRepSearch" width="5rem"
+						class="cl_iconBtn cl_focusbtn cl_primaryBtn "/>
+				</HBox>
+				<layoutData>
+					<grid:GridData span=" L2 M6 S12"/>
+				</layoutData>
+			</VBox>
+		</grid:Grid>
+		<Toolbar height="0.2rem"/> 
+		<Toolbar class="cl_bordertool  sapUiTinyMargin">
+			<Image src="{= ${JM_ImageModel>/path} + 'MyRequest.svg'}" width="1rem"/>
+			<Text text="{i18n>List}" class="cl_charttitle"/>
+			<VBox class="cl_dbCount" alignItems="Center" justifyContent="Center">
+				<Text id="id_toatlcount" text="{= ${JMChangeRep>/}.length }" class=" cl_textcount"/>
+			</VBox>
+			<ToolbarSpacer/>
+			<SearchField placeholder="{i18n>SearchHere}" liveChange="fnChangeLogSearch" width="12rem" class="cl_varsearch"/>
+			<Image src ="{= ${JM_ImageModel>/path} + 'ChangeLogDown.svg'}" class="sapUiTinyMargin" width="1.5rem"/>
+		</Toolbar>
+		<Table items="{JMChangeRep>/}" id="DIDCHANGELOG" class="sapUiTinyMarginTop cl_TableHeader cl_no_focus_list">
+			<columns>
+				<Column width="7rem">
+					<Label text="{i18n>TransactionID}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>SapCode}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>FieldName}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>OldValue}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>NewValue}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>ReqName}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>ReqDate}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>Approver}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>ApprDate}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>Comments}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>OrgInfoField}" class="cl_textTableHeader"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>OrgInfoValue}" class="cl_textTableHeader"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem class="cl_no_focus_list">
+					<cells>
+						<Label text="{JMChangeRep>Transid}" tooltip="{JMChangeRep>Transid}" class="cl_textTableItem"/>
+						<Label class="cl_textTableItem" text="{path: 'JMChangeRep>ObjValue', formatter: 'MDM_QIR.Formatter.formatter.fnremoveLeadingZeros'}"
+							tooltip="{path: 'JMChangeRep>ObjValue', formatter: ''MDM_QIR.Formatter.formatter.fnremoveLeadingZeros'}"/>
+						<Label text="{JMChangeRep>FmmDes}" tooltip="{JMChangeRep>FmmDes}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>ValueOld}" tooltip="{JMChangeRep>ValueOld}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>ValueNew}" tooltip="{JMChangeRep>ValueNew}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>Reqname}" tooltip="{JMChangeRep>Reqname}" class="cl_textTableItem"/>
+						<Label text="{path: 'JMChangeRep>Reqdate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}"
+							tooltip="{path: 'JMChangeRep>Reqdate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>Approver}" tooltip="{JMChangeRep>Approver}" class="cl_textTableItem"/>
+						<Label text="{path: 'JMChangeRep>Approverdate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}"
+							class="cl_textTableItem"
+							tooltip="{path: 'JMChangeRep>Approverdate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}"/>
+						<Text text="{JMChangeRep>Comments}" wrapping="false" tooltip="{JMChangeRep>Comments}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>Orgfield}" tooltip="{JMChangeRep>Orgfield}" class="cl_textTableItem"/>
+						<Label text="{JMChangeRep>Orgvalue}" tooltip="{JMChangeRep>Orgvalue}" class="cl_textTableItem"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Bar>
+			<contentMiddle >
+				<Button text="{i18n>Close}" icon="sap-icon://decline" class="sapUiTinyMarginTop cl_secondaryBtn cl_focusbtn cl_icon"
+					press="fnCloseChangeLog"/>
+			</contentMiddle>
+		</Bar>
+	</Dialog>
+</core:FragmentDefinition>

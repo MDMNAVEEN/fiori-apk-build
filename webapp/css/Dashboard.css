@@ -1,0 +1,897 @@
+/*Dialog Box CSS*/
+
+.cl_checkboxSel .sapMCbBg {
+    border-raius: 4px !important;
+    border: 1px solid #3393A1;
+    background-color: #3393A1 !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    /*height:12px !important;*/
+    /*width:12px !important;*/
+    fornt-size: 10px !important;
+    /*border-raduis: 1px !important;*/
+}
+
+.cl_checkboxSel.sapMCb:focus::before {
+    border: none !important;
+}
+
+.cl_checkbox.sapMCb:focus::before {
+    border: none !important;
+}
+
+.cl_checkbox .sapMCbBg {
+    background: #FFFFFF !important;
+    border: 1px solid #98A2B3;
+    border-raius: 4px !important;
+}
+
+.cl_footercust .sapMBar {
+    /*background: var(--Background-Surface-Neutral-Lv3, #F8FAFB) !important;*/
+    height: 2.5rem !important;
+}
+
+.cl_coloroutline {
+    box-shadow: 0px -8px 20px 0px #00000014 !important;
+    background: var(--Background-Surface-Neutral-Lv3, #F8FAFB) !important;
+}
+
+.cl_footercust .sapUiSizeCompact .sapMBarLeft,
+.sapUiSizeCompact .sapMBarRight,
+.sapUiSizeCompact .sapMBarPH {
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+}
+
+.cl_footercust.sapMDialog:not(.sapUiResponsiveContentPadding):not(.sapUiContentPadding).sapMDialog-NoFooter .sapMDialogScroll {
+    padding-bottom: 0px !important;
+}
+
+.cl_columnshead.sapUiSizeCompact.sapMDialog .sapMDialogTitleGroup .sapMHeader-CTX {
+    background: linear-gradient(to right, #9DFAF6, #56C4CD);
+    /*background: #56BDCD !important;*/
+}
+
+
+/*Added By Naveen Kumar N */
+
+.cl_columnshead.sapUiSizeCompact .sapMTBSpacer {
+    display: none !important;
+}
+
+
+/*Added By Naveen Kumar N */
+
+.cl_columnshead .sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center !important;
+}
+
+
+/*Added By Naveen Kumar N */
+
+.cl_columnshead.sapMDialog>header .sapMDialogTitleGroup .sapMTitle {
+    font-size: 14px !important;
+}
+
+.cl_dialogTransCtion {
+    background: linear-gradient(to right, #9DFAF6, #56C4CD) !important;
+    margin-top: -4px !important;
+}
+
+.cl_columnshead .sapMTB.sapMFooter-CTX {
+    background: #E8E8E8 !important;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.cl_columnshead .sapMFooter-CTX {
+    height: 2.6rem !important;
+}
+
+.cl_footercust .sapMBar {
+    background-color: #E8E8E8;
+    box-shadow: none;
+    height: 2.5rem !important;
+}
+
+.cl_footercust.sapMDialog:not(.sapUiResponsiveContentPadding):not(.sapUiContentPadding).sapMDialog-NoFooter .sapMDialogScroll {
+    padding-bottom: 0px !important;
+}
+
+
+/*Search Field in Variant Dialog*/
+
+.cl_varsearch .sapMSFF:hover {
+    border: 1px solid #f7f7f7 !important;
+    box-shadow: none !important;
+    background: #f7f7f7 !important;
+    border-radius: 2px;
+}
+
+.cl_varsearch .sapMSFF {
+    border: 1px solid #f7f7f7 !important;
+    box-shadow: none !important;
+    background: #f7f7f7 !important;
+    border-radius: 2px;
+}
+
+.cl_varsearch .sapMSFF {
+    font-family: 'Segoe UI' !important;
+    font-style: normal;
+    /*font-weight: 600;*/
+    font-size: 13px;
+    color: #141414;
+}
+
+.cl_varsearch .sapMSFF::before {
+    border: none !important;
+}
+
+.cl_varsearch .sapMSFI::placeholder {
+    font-family: 'Segoe UI' !important;
+    font-style: normal;
+    /*font-weight: 600;*/
+    font-size: 13px;
+    color: #A8A7A7;
+}
+
+.cl_varsearch .sapMSFI::placeholder {
+    font-family: 'Segoe UI' !important;
+    font-style: normal;
+    /*font-weight: 600;*/
+    font-size: 13px;
+    color: #A8A7A7;
+}
+
+.cl_varsearch .sapMSFB::after {
+    color: #676D83;
+    font-size: 13px;
+}
+
+.cl_f4table-wrapper {
+    border-top: 1px solid #E0E2F0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cl_f4table .sapMList {
+    margin: 0px !important;
+}
+
+.cl_f4table .sapMLIBShowSeparator>td {
+    height: 2rem !important;
+}
+
+.cl_f4table .sapMTableTH {
+    height: 2rem !important;
+    background: #e4fbff !important;
+    border-bottom: none !important;
+}
+
+.cl_f4table .sapMText {
+    font-family: "Segoe UI Semibold";
+    font-size: 13px;
+    color: #4E4B66;
+}
+
+.cl_f4table .sapMTableRowCustomFocus:focus+.sapMListTblSubRow>td::before,
+.cl_f4table .sapMTableRowCustomFocus:focus>:not(.sapMListTblDummyCell:last-child)::before {
+    border: none !important;
+}
+
+.cl_f4table .sapMLIBFocusable:focus,
+.cl_f4table .sapMTblCellFocusable:focus {
+	outline:none !important;
+	border:none !important;
+}
+
+
+/*Screen CSS*/
+
+.cl_headermenu {
+    background-color: #3393A1 !important;
+    border-radius: 26px;
+}
+
+.cl_iconBtn .sapMBtnInner .sapMBtnIcon.sapMImg {
+    width: 0.8rem !important;
+}
+
+.cl_icon .sapMBtnInner.sapMBtnText .sapMBtnIcon::before {
+    color: #ffffff !important;
+}
+
+.cl_iconColumn .sapMBtnInner.sapMBtnText .sapMBtnIcon::before {
+    color: #4E4B66 !important;
+}
+
+.cl_focusbtn .sapMBtnDefault::before {
+    border: none !important;
+}
+
+.cl_bottomboder {
+    border-bottom: 1px solid var(--Stroke-Primary, #E6E8EA);
+    background-color: #F8FAFB !important;
+    border-top-left-radius: 7px !important;
+    border-top-right-radius: 7px !important;
+}
+
+.cl_dashbtn .sapMBtnInner {
+    background: #FFFFFF;
+    height: 1.5rem !important;
+    font-family: "Segoe Ui Semibold";
+    font-size: 11px;
+    color: #3393A1 !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: none !important;
+    margin-left: 3px !important;
+}
+
+.cl_dashbtn.sapMBtn .sapMBtnHoverable {
+    background: #FFFFFF !important;
+}
+
+.cl_nextbtn .sapMBtnInner {
+    background: #E4FBFF !important;
+    font-family: "Segoe Ui Semibold";
+    font-size: 12px;
+    color: #020204 !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 7px;
+    width: 3.5rem !important;
+    border: 1px solid var(--Stroke-Primary, #E6E8EA) !important;
+}
+
+.cl_previousbtn .sapMBtnInner {
+    background: #FFFFFF !important;
+    font-family: "Segoe UI Semibold";
+    font-size: 12px;
+    color: #020204 !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 7px;
+    width: 5rem !important;
+    border: 1px solid var(--Stroke-Primary, #E6E8EA) !important;
+}
+
+.cl_tranBtn .sapMBtnInner {
+    background: transparent;
+    height: 1.5rem !important;
+    font-family: "segoe UI Semibold";
+    font-size: 11px;
+    color: #FFFFFF !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: none !important;
+}
+
+.cl_tranBtn.sapMBtn .sapMBtnHoverable {
+    background: transparent !important;
+}
+
+.cl_userid_font {
+    font-family: 'Segoe UI' !important;
+    font-size: 12px !important;
+    color: #4E4B66 !important;
+    letter-spacing: 0.15px;
+}
+
+.cl_pagefont {
+    font-family: 'Segoe UI Semibold' !important;
+    font-size: 12px !important;
+    color: #020204 !important;
+}
+
+.cl_ar_inputField .sapMInputBaseInner {
+    font-family: "Segoe UI" !important;
+    font-size: 12px;
+    font-weight: 400;
+    color: #141414;
+}
+
+.cl_ar_inputField .sapMInputBaseIcon::before {
+    color: #3393A1 !important;
+}
+
+.cl_ar_inputField .sapMInputBaseContentWrapper {
+    box-shadow: none !important;
+    border-radius: 2px !important;
+    border: 1px solid #A8A7A7 !important;
+    /*background: none !important;*/
+}
+
+.cl_ar_inputField .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #A8A7A7 !important;
+}
+
+.cl_ar_inputField.sapMInputBase:not(.sapMFocus) .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #A8A7A7 !important;
+}
+
+.cl_ar_inputField.sapMFocus.sapMInputBase .sapMInputBaseContentWrapper:not(.sapMInputBaseDisabledWrapper)::before {
+    border: none !important;
+}
+
+.cl_ar_inputField.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseInner {
+    background: #f3f3f3 !important;
+    color: #141414;
+}
+
+.cl_ar_inputField.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseContentWrapper {
+    background: #f3f3f3 !important;
+    border: 1px solid #A8A7A7 !important;
+}
+
+.cl_ar_inputField .sapMInputBaseContentWrapperError {
+    background: var(--sapField_InvalidBackgroundStyle) !important;
+    background-color: var(--sapField_InvalidBackground) !important;
+    border: 1px solid #A8A7A7 !important;
+    box-shadow: var(--sapField_InvalidShadow) !important;
+}
+
+.cl_ar_inputField.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseContentWrapper {
+    background: #f3f3f3 !important;
+    border: 1px solid #A8A7A7 !important;
+}
+
+
+/* ===========================
+   Common ComboBox Styles
+   =========================== */
+
+.cl_ar_combobox .sapMInputBaseInner {
+    font-family: "Segoe UI" !important;
+    font-size: 12px;
+    font-weight: 400;
+    color: #141414;
+    border-radius: 0px;
+}
+
+.cl_ar_combobox.sapMSlt>.sapMSltLabel {
+    font-family: "Segoe UI" !important;
+    font-size: 12px;
+    font-weight: 400;
+    color: #141414;
+    border-radius: 0px;
+}
+
+.cl_ar_combobox.sapMSlt {
+    background: #ffffff;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: 1px solid #9AA0A7 !important;
+    border-radius: 3px !important;
+}
+
+.cl_ar_combobox .sapMInputBaseInner::placeholder {
+    font-family: "Segoe UI" !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    height: 24px;
+    letter-spacing: 0.15px;
+    text-transform: capitalize;
+    color: #9AA0A7;
+    opacity: 1;
+}
+
+.cl_ar_combobox .sapMInputBaseContentWrapper {
+    border: 1px solid #9AA0A7;
+    border-radius: 2px;
+    box-shadow: none !important;
+}
+
+.cl_ar_combobox.sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #A8A7A7 !important;
+}
+
+.cl_ar_combobox.sapMInputBase:not(.sapMFocus).sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #A8A7A7 !important;
+}
+
+.cl_ar_combobox.sapMFocus.sapMInputBase .sapMInputBaseContentWrapper:not(.sapMInputBaseDisabledWrapper)::before {
+    border: none !important;
+}
+
+.cl_ar_combobox.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseInner,
+.cl_ar_combobox.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseContentWrapper {
+    background: #f3f3f3 !important;
+    color: #141414;
+    border: 1px solid #A8A7A7 !important;
+}
+
+.cl_ar_combobox .sapMInputBaseContentWrapperError {
+    background: var(--sapField_InvalidBackgroundStyle) !important;
+    background-color: var(--sapField_InvalidBackground) !important;
+    border: 1px solid #A8A7A7;
+    box-shadow: var(--sapField_InvalidShadow);
+}
+
+.cl_ar_combobox .sapMSltArrow::before {
+    content: "";
+    background-image: url("../Images/Dropdown.svg") !important;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+.cl_cardtext {
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 13px !important;
+    color: #141414;
+}
+
+.cl_cardValue {
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 19px !important;
+    color: #141414;
+}
+
+.cl_charttitle {
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 14px !important;
+    /*font size 16 changed to 14 by Naveen Kumar N */
+    color: #020204;
+}
+
+.cl_TextCTitle {
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 12px !important;
+    color: #020204;
+}
+
+.cl_db_card {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--Stroke-Primary, #E6E8EA);
+    box-shadow: 0px 2px 8px 0px #00000026;
+    /*box-shadow: -3px 0px 0px 0px #039855;*/
+}
+
+.cl_db_ToolbarNoBorder {
+    border: none !important;
+    background: transparent !important;
+}
+
+.cl_db_cardtotal {
+    border-left: 3px solid #8098F9;
+    background-color: #EEF4FF !important;
+}
+
+.cl_db_cardinprogress {
+    border-left: 3px solid #FDB022;
+    background-color: #FFFAEB !important;
+}
+
+.cl_db_cardpending {
+    border-left: 3px solid #9B8AFB;
+    background-color: #EEF4FF !important;
+}
+
+.cl_db_cardSendback {
+    border-left: 3px solid #FD853A;
+    background-color: #FFF6ED !important;
+}
+
+.cl_db_cardCompleted {
+    border-left: 3px solid #32D583;
+    background-color: #ECFDF3 !important;
+}
+
+.cl_db_cardRejected {
+    border-left: 3px solid #FDA29B;
+    background-color: #FEF3F2 !important;
+}
+
+.cl_db_cardDraft {
+    border-left: 3px solid #717BBC;
+    background-color: #F8F9FC !important;
+}
+
+.cl_db_cardCreation {
+    border-left: 3px solid #0086C9;
+    background-color: #EFF8FF !important;
+}
+
+.cl_db_cardChange {
+    border-left: 3px solid #A80835;
+    background-color: #FEF2F6 !important;
+}
+
+.cl_db_cardExtension {
+    border-left: 3px solid #444CE7;
+    background-color: #F4F3FF !important;
+}
+
+.cl_db_cardBlock {
+    border-left: 3px solid #DC6803;
+    background-color: #FFF6ED !important;
+}
+
+.cl_db_cardUnblock {
+    border-left: 3px solid #039855;
+    background-color: #ECFDF3 !important;
+}
+
+.cl_chartoutline {
+    border: 1px solid #E6E8EA;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 7px;
+}
+
+.cl_tableoutline {
+    border-radius: 7px;
+    border: 1px solid #D0D5DD;
+}
+
+.cl_bordertool {
+    border: none !important;
+    /*background:transparent  !important;   Commented By Naveen Kumar N*/
+}
+
+
+/*Added By Naveen Kumar N */
+
+.cl_columnshead.sapMTBNewFlex {
+    justify-content: center !important;
+}
+
+.cl_TextChart {
+    color: #667085 !important;
+    font-size: 10px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_TextChartD {
+    color: #667085 !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_borderboxdata {
+    border: 1px solid #E6E8EA;
+    border-radius: 7px;
+}
+
+.cl_bgcolor {
+    background-color: #56BDCD33 !important;
+    border-radius: 3px;
+}
+
+.cl_borderline {
+    border: 1px solid #56BDCD !important;
+}
+
+
+/*Table CSs*/
+
+.cl_TableHeader {
+    background-color: #E4FBFF !important;
+    /*border-bottom: 1px solid var(--Stroke-Primary, #E6E8EA);*/
+}
+.cl_TableHeader .sapMTableRowCustomFocus:focus+.sapMListTblSubRow>td::before,
+.cl_TableHeader .sapMTableRowCustomFocus:focus>:not(.sapMListTblDummyCell:last-child)::before {
+    border: none !important;
+}
+
+.cl_TableHeader .sapMLIBFocusable:focus,
+.cl_TableHeader .sapMTblCellFocusable:focus {
+	outline:none !important;
+	border:none !important;
+}
+.cl_TableItem {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--Stroke-Primary, #E6E8EA);
+}
+
+.cl_textTableHeader {
+    color: #625F6E !important;
+    font-size: 12px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_tableselect .sapMCbBg {
+    border: 1px solid #98A2B3 !important;
+    border-radius: 2px !important;
+    box-shadow: 0px 1px 2px 0px #061B160F !important;
+}
+
+.cl_tableselect.sapMCb::before {
+    border: none !important;
+}
+
+.cl_tableselected .sapMCbBg {
+    border-radius: 2px !important;
+    border: 1px solid #98A2B3;
+    background-color: #3393A1 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0px 1px 2px 0px #061B160F !important;
+}
+
+.cl_tableselected.sapMCb:focus::before {
+    border: none !important;
+}
+
+.cl_textTableItem {
+    color: #625F6E !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_textTableLink.sapMLnk {
+    color: #3393A1 !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+    background: none !important;
+}
+
+.cl_textadvanceLink.sapMLnk {
+    color: #3393A1 !important;
+    font-size: 12px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_subtableBG {
+    background: #F2F4F7 !important;
+}
+
+.cl_textcount {
+    color: #3393A1 !important;
+    font-size: 12px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_Imgdropdown.sapMImgFocusable:focus {
+    outline: none !important;
+}
+
+.cl_TableHeader .sapMTableTH {
+    background-color: #E4FBFF !important;
+    /*border: 1px solid var(--Stroke-Primary, #E6E8EA) !important;*/
+    border-radius: 4px !important;
+}
+
+[data-statusIcon='cl_iconroundcomp'] {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background-color: #12B76A !important;
+}
+
+[data-statusIcon='cl_iconroundpend'] {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background-color: #F79009 !important;
+}
+
+[data-statusIcon='cl_iconroundsend'] {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background-color: #9B8AFB !important;
+}
+
+[data-statusIcon='cl_iconroundrejec'] {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background-color: #FDA29B !important;
+}
+
+[data-statusIcon='cl_iconrounddraft'] {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background-color: #717BBC !important;
+}
+
+.sapMText[data-statusClass='cl_textTableItemD'] {
+    color: #717BBC !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.sapMText[data-statusClass='cl_textTableItemPend'] {
+    color: #F79009 !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.sapMText[data-statusClass='cl_textTableItemComp'] {
+    color: #12B76A !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.sapMText[data-statusClass='cl_textTableItemSend'] {
+    color: #9B8AFB !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.sapMText[data-statusClass='cl_textTableItemrejec'] {
+    color: #FDA29B !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_db_advanceIcon {
+    opacity: 0.6;
+}
+
+.cl_dbCount {
+    background-color: #56BDCD33 !important;
+    border-radius: 25px !important;
+    height: 20px;
+    width: 30px;
+}
+
+.cl_bordertout {
+    border: 1px solid #D0D5DD !important;
+    border-radius: 5px !important;
+}
+
+.cl_columnListText {
+    color: #4E4B66 !important;
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_TextYear {
+    color: #202124 !important;
+    font-size: 12px !important;
+    font-family: "Segoe UI Semibold" !important;
+}
+
+.cl_TextCount {
+    color: #202124 !important;
+    font-size: 18px !important;
+    font-family: "Segoe UI" !important;
+    font-weight: 700;
+    margin-top: -10px !important;
+}
+
+.cl_lastyear .sapMBtnInner {
+    background: #FFFFFF;
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 8px;
+    color: #5F6369 !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    height: 0.9rem !important;
+    border: 1px solid #D0D5DD !important;
+}
+
+.cl_lastyear.sapMBtn .sapMBtnHoverable {
+    background: #FFFFFF !important;
+}
+
+.cl_multicombobox .sapUiSizeCompact .sapMSLITitle,
+.sapUiSizeCompact .sapMSLITitleOnly {
+    font-size: 11px !important;
+    font-family: "Segoe UI Semibold" !important;
+    color: #202124 !important;
+    width: 5rem !important;
+}
+
+.cl_multicombobox .sapMToken {
+    font-family: "Segoe UI Semibold" !important;
+    color: #202124 !important;
+    font-size: 8px !important;
+}
+
+.cl_multicombobox .sapMTokenizer.sapMTokenizerReadonly .sapMTokenizerIndicator,
+.sapMTokenizer .sapMTokenizerIndicator {
+    color: #3393A1 !important;
+    font-family: "Segoe UI Semibold" !important;
+    font-size: 11px !important;
+}
+
+
+/*Snackbar*/
+
+.cl_customBottomDialog.sapMDialog {
+    position: fixed !important;
+    bottom: 30px !important;
+    top: auto !important;
+    margin: 0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cl_snackbarSuccess {
+    font-family: 'Segoe UI' !important;
+    color: #00BA00 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.cl_snackbarError {
+    font-family: 'Segoe UI' !important;
+    color: #F44336 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.cl_snackbarWarn {
+    font-family: 'Segoe UI' !important;
+    color: #F4C300 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.cl_snackbarInfo {
+    font-family: 'Segoe UI' !important;
+    color: #00CCFF !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.cl_snackbarInfoText {
+    font-family: 'Segoe UI semibold' !important;
+    color: #4E4B66 !important;
+    font-size: 12px !important;
+}
+
+.cl_snackbarborderSucc {
+    height: 4rem !important;
+    Background-color: #00BA00 !important;
+    width: 4px !important;
+    border-radius: 1px !important;
+}
+
+.cl_snackbarborderError {
+    height: 4rem !important;
+    Background-color: #F44336 !important;
+    width: 4px !important;
+    border-radius: 1px !important;
+}
+
+.cl_snackbarborderWarn {
+    height: 4rem !important;
+    Background-color: #F4C300 !important;
+    width: 4px !important;
+    border-radius: 1px !important;
+}
+
+.cl_snackbarborderInfo {
+    height: 4rem !important;
+    Background-color: #00CCFF !important;
+    width: 4px !important;
+    border-radius: 1px !important;
+}
+
+
+/* Remove Focus Styles Added By Naveen Kumar N */
+
+.cl_no_focus_list .sapMLIBFocusable:focus,
+.cl_no_focus_list .sapMTblCellFocusable:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+.cl_no_focus_list .sapMTableRowCustomFocus:focus+.sapMListTblSubRow>td::before,
+.cl_no_focus_list .sapMTableRowCustomFocus:focus>:not(.sapMListTblDummyCell:last-child)::before {
+    border: none !important;
+}
+
+.cl_no_focus_customlist.sapMLIBFocusable:focus,
+.cl_no_focus_customlist.sapMTblCellFocusable:focus {
+    outline: none !important;
+    border: none !important;
+}

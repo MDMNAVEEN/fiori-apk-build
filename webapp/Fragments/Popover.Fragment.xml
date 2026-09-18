@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover placement="Bottom" showHeader="false" contentWidth="125px">
+		<VBox class="sapUiTinyMargin">
+			<Button text="{i18n>Customize_btn}" tooltip="{i18n>Customize_btn}" class="sapUiSizeCompact cl_adsearchbtn" icon="{= ${JM_ImageModel>/path} + 'PauseIcon.svg'}"
+				press="fn_OpenCustomizeColumns"/>
+			<Button text="{i18n>Wrap_btn}" tooltip="{i18n>Wrap_btn}" id="id_wraptext" class="sapUiSizeCompact cl_adsearchbtn"
+				icon="{= ${JM_ImageModel>/path} + 'WrapTextIcon.svg'}" press="fn_ToggleWrapText"/>
+			<HBox justifyContent="Center">
+				<Button text="{i18n>Clear_btn}" tooltip="{i18n>Clear_btn}" class="cl_pribtn sapUiSizeCompact" icon="{= ${JM_ImageModel>/path} + 'CycleIcon.svg'}"
+					press="fn_ClearTable"/>
+			</HBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

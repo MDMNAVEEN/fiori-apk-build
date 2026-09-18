@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="Error" icon="{= ${JM_ImageModel>/path} + 'ErrorImage.svg'}" class=" cl_errdlg cl_f4dlg" draggable="true">
+		<content>
+			<List items="{ValidationMsgModel>/items}" mode="SingleSelectMaster" includeItemInSelection="true" itemPress=".fn_ValidationMessagePress">
+				<CustomListItem type="Active">
+					<VBox class="sapUiSmallMargin">
+						<!--<HBox justifyContent="SpaceBetween">-->
+						<!--	<Text text="{ValidationMsgModel>FieldName}" wrapping="true"/>-->
+						<!--	<ObjectStatus text="{ValidationMsgModel>MsgType}"-->
+						<!--		state="{= ${ValidationMsgModel>MsgType} === 'E' ? 'Error' : ${ValidationMsgModel>MsgType} === 'W' ? 'Warning' : 'Success' }"/>-->
+						<!--</HBox>-->
+						<Text text="{ValidationMsgModel>Message}" wrapping="true"/>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Close_btn}" tooltip="{i18n>Close_btn}" class="cl_secbtn sapUiSizeCompact" press=".onCloseValidationDialog"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

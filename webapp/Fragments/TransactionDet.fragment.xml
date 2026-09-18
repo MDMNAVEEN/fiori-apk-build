@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:grid="sap.ui.layout">
+	<Dialog showHeader="false" class="cl_columnshead sapUiSizeCompact cl_footercust" horizontalScrolling="false" contentWidth="25%">
+		<Toolbar class="cl_bordertool cl_dialogTransCtion">
+			<ToolbarSpacer/>
+			<Text text="{i18n>TransactionDet}" class="cl_charttitle"/>
+			<ToolbarSpacer/>
+		</Toolbar>
+		<VBox class="sapUiTinyMargin">
+		<Table items="{JMTrDet>/}" id="DID_TRASTABLE" class="cl_TableHeader ">
+			<columns>
+				<Column width="5rem">
+					<Text text="{i18n>GroupDes}" class="cl_textTableHeader"/>
+				</Column>
+				<Column width="4rem">
+					<Text text="{i18n>Transaction}"  class="cl_textTableHeader"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{JMTrDet>Group}" class="cl_textTableItem"/>
+						<HBox alignItems="Center" class="cl_bordertool">
+							<VBox class="sapUiTinyMarginEnd">
+								<customData>
+									<core:CustomData key="statusIcon" value="{ path: 'JMTrDet>Value', formatter: 'MDM_QIR.Formatter.formatter.getStatuIcon' }" writeToDom="true"/>
+								</customData>
+							</VBox>
+							<Text text="{ path: 'JMTrDet>Value', formatter: 'MDM_QIR.Formatter.formatter.getStatusText' }" class="cl_textTableItem">
+								<customData>
+									<core:CustomData key="statusClass" value="{ path: 'JMTrDet>Value', formatter: 'MDM_QIR.Formatter.formatter.getStatusClass' }"
+										writeToDom="true"/>
+								</customData>
+							</Text>
+						</HBox>
+						<!--<Text text="{JMTrDet>Value}"  class="cl_textTableItem"/>-->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		</VBox>
+		<Bar class="">
+			<contentMiddle >
+				<Button text="{i18n>Cancel}" icon="sap-icon://decline" class="sapUiTinyMarginTop cl_secondaryBtn cl_focusbtn cl_icon"
+					press="fnCloseTrans"/>
+			</contentMiddle>
+		</Bar>
+	</Dialog>
+</core:FragmentDefinition>

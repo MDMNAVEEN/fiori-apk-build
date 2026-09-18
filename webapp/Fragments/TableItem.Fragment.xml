@@ -1,0 +1,185 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:layout="sap.ui.layout" xmlns:uitable="sap.ui.table"
+	xmlns:u="sap.ui.unified">
+	<!--	<m:Dialog id="idItemDialog" contentWidth="85%" class="cl_DesDupDialog sapUiSizeCompact" verticalScrolling="false"-->
+	<!--		horizontalScrolling="false">-->
+	<!--		<customHeader>-->
+	<!--			<m:Toolbar class="cl_DupDialogToolbar" height="2.5rem">-->
+	<!--				<m:ToolbarSpacer/>-->
+	<!--				<m:Text text="{i18n>Quality_Agreement_table}" class="sapUiTinyMarginTopBottom"/>-->
+	<!--				<m:ToolbarSpacer/>-->
+	<!--			</m:Toolbar>-->
+	<!--		</customHeader>-->
+	<!--		<HBox width="97%" justifyContent="End" class="sapUiSmallMarginEnd sapUiSmallMarginTop">-->
+	<!--			<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" id="id_plusbtn" tooltip="{i18n>addrow_btn}"-->
+	<!--				press="fn_additemrow" icon="{= ${JM_ImageModel>/path} + 'PlusIcon.svg'}"></Button>-->
+	<!--			<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" id="id_deletebtn" tooltip="{i18n>delrow_btn}"-->
+	<!--				press="fn_delitemrow" icon="{= ${JM_ImageModel>/path} + 'DeleteIcon.svg'}"></Button>-->
+	<!--		</HBox>-->
+	<!--		<table:Table id="idItemTable" rows="{JM_ItemModel>/Rows}" visibleRowCount="10" class="cl_table sapUiSmallMargin"/>-->
+	<!--		<buttons>-->
+	<!--			<Button text="{i18n>Cancel_btn}" tooltip="{i18n>Cancel_btn}" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}"-->
+	<!--				class="sapUiSizeCompact cl_secbtn sapUiSmallMarginEnd" press="fnClose"/>-->
+	<!--		</buttons>-->
+	<!--	</m:Dialog>-->
+	<m:Dialog id="idItemDialog" contentWidth="85%" class="cl_DesDupDialog sapUiSizeCompact" verticalScrolling="false"
+		horizontalScrolling="false">
+		<customHeader>
+			<!--<m:Toolbar class="cl_DupDialogToolbar" height="2.5rem">-->
+			<!--	<m:ToolbarSpacer/>-->
+			<!--	<m:Title text="Item No : {DialogModel>/SelectedItemNo}"/>-->
+			<!--	<m:ToolbarSpacer/>-->
+			<!--</m:Toolbar>-->
+			<m:Toolbar class="cl_DupDialogToolbar cl_ItemDupDialogToolbar" height="2.5rem">
+				<m:Image src="{= ${JM_ImageModel>/path} + 'NavButtonPre.svg'}" press="fnPreviousItem" width="20px" class="cl_imagefocus"/>
+				<m:ToolbarSpacer/>
+				<m:Title text="Item No : {DialogModel>/SelectedItemNo}"/>
+				<m:ToolbarSpacer/>
+				<m:Image src="{= ${JM_ImageModel>/path} + 'NavButtonNext.svg'}" press="fnNextItem" width="20px" class="cl_imagefocus"/>
+			</m:Toolbar>
+		</customHeader>
+		<IconTabBar id="idItemTabBar" expanded="true" class="sapUiTinyMarginTop cl_tabpage">
+			<items>
+				<!-- Quality Agreement -->
+				<IconTabFilter key="QA" text="Quality Agreement" class='cl_tabstext sapUiTinyMarginTop'>
+					<HBox width="97%" justifyContent="End" class="sapUiSmallMarginEnd sapUiSmallMarginTop">
+						<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" id="id_plusbtn" tooltip="{i18n>addrow_btn}"
+							press="fn_additemrow" icon="{= ${JM_ImageModel>/path} + 'PlusIcon.svg'}"/>
+						<Button class="cl_nvariant cl_nvariantin sapUiSizeCompact sapUiTinyMarginBeginEnd" id="id_deletebtn" tooltip="{i18n>delrow_btn}"
+							press="fn_delitemrow" icon="{= ${JM_ImageModel>/path} + 'DeleteIcon.svg'}"/>
+					</HBox>
+					<uitable:Table id="idItemTable" rows="{JM_ItemModel>/Rows}" visibleRowCount="5" class="cl_table sapUiSmallMargin"/>
+				</IconTabFilter>
+				<!-- Attachment -->
+				<IconTabFilter key="ATT" text="Attachment" class='cl_tabstext'>
+					<!--<VBox class="sapUiMediumMargin">-->
+					<!--	<Text text="Attachment Content"/>-->
+					<!-- Put your attachment controls here -->
+					<!--</VBox>-->
+					<VBox class="sapUiTinyMarginEnd" width="100%">
+						<VBox class="cl_search">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>attachments}" class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>
+							</HBox>
+							<layout:Grid defaultSpan="L3 M12 S12">
+								<VBox height="250px" width="100%" id="id_maintable">
+									<layoutData>
+										<layout:GridData span="L9 M12 S12"/>
+									</layoutData>
+									<VBox class="cl_padding sapUiTinyMarginTop">
+										<layout:Grid defaultSpan="L12 M12 S12" hSpacing="0">
+											<HBox>
+												<layoutData>
+													<layout:GridData span="L9 M12 S12"/>
+												</layoutData>
+												<VBox height="1.4rem" class="cl_separatorline sapUiTinyMarginBottom"></VBox>
+												<Text text="{i18n>uploadfiles}" class="cl_headtxt sapUiTinyMarginBottom sapUiSizeCompact sapUiTinyMarginEnd"/>
+												<Text text="{i18n>supportedfiles}" class="cl_label"/>
+											</HBox>
+											<HBox justifyContent="End">
+												<layoutData>
+													<layout:GridData span="L3 M12 S12"/>
+												</layoutData>
+												<Button class="cl_nvariant cl_nvariantin cl_buttonpad sapUiSizeCompact" press="fnMassDownload"
+													enabled="{= ${JM_DocTypeModel>/List}.length > 1 }" icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}"/>
+											</HBox>
+										</layout:Grid>
+									</VBox>
+									<uitable:Table id="idAttachmentTable" class="cl_init_table cl_padding" selectionBehavior="Row" rows="{JM_DocTypeModel>/List}"
+										visibleRowCount="5" selectionMode="MultiToggle" width="100%" enableColumnResize="true">
+										<uitable:noData>
+											<VBox alignItems="Center" justifyContent="Center" height="100%">
+												<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="120px" height="120px"/>
+												<Text text="No Data Found" class="cl_label"/>
+											</VBox>
+										</uitable:noData>
+										<uitable:columns>
+											<uitable:Column label="{i18n>attno}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>attno}">
+												<uitable:template>
+													<Text text="{JM_DocTypeModel>AttachmentNo}" class="cl_label"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>att}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>att}">
+												<uitable:template>
+													<Link text="{JM_DocTypeModel>TagName}" class=" cl_label" press="fnDownloadSingleFile"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>doctype}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>doctype}">
+												<uitable:template>
+													<Text text="{JM_DocTypeModel>DocType}" class="cl_label"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>filesize}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>filesize}">
+												<uitable:template>
+													<Text text="{JM_DocTypeModel>Size}" class="cl_label"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>delete}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>delete}">
+												<uitable:template>
+													<Button icon="{= ${JM_ImageModel>/path} + 'DeleteBlueIcon.svg'}" class="sapUiSizeCompact sapUiTinyMarginBegin cl_expand cl_delete"
+														tooltip="{i18n>delete}" press="fn_DeleteFileRow"/>
+												</uitable:template>
+											</uitable:Column>
+											<uitable:Column label="{i18n>cre}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>cre}">
+												<uitable:template>
+													<Text text="{JM_DocTypeModel>CreatedBy}" class="cl_label"/>
+												</uitable:template>
+											</uitable:Column>
+										</uitable:columns>
+									</uitable:Table>
+								</VBox>
+								<VBox justifyContent='End' class="" height="250px">
+									<VBox class="sapUiTinyMarginTop">
+										<Label text="{i18n>doctype}" class="cl_label"/>
+										<!--<ComboBox id="id_doccombo" editable="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" width="100%" class="cl_varsel cl_doc sapUiSizeCompact sapUiTinyMarginEnd " placeholder="{i18n>stype}" items="">-->
+										<!--	<core:Item key="{JM_Variant>VariantName}" text="{JM_Variant>VariantName}"/>-->
+										<!--</ComboBox>-->
+										<ComboBox id="id_doccombo"
+											editable="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+											width="100%" class="cl_varsel cl_doc sapUiSizeCompact sapUiTinyMarginEnd " placeholder="{i18n>stype}" items="">
+											<core:Item key="{JM_Variant>VariantName}" text="{JM_Variant>VariantName}"/>
+										</ComboBox>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>uploadfile}" class="cl_label"/>
+										<!--<u:FileUploader id="fileUploader" enabled="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" width="100%" change="fnFileSelected" uploadOnChange="false"-->
+										<!--	fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf" accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf"-->
+										<!--	uploadComplete="onUploadComplete" class="cl_input cl_doc cl_uploadfile sapUiSizeCompact" xmlns:u="sap.ui.unified"/>-->
+										<!--<u:FileUploader id="fileUploader"-->
+										<!--	enabled="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"-->
+										<!--	width="100%" change="fnFileSelected" uploadOnChange="false" fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf"-->
+										<!--	accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf" uploadComplete="onUploadComplete"-->
+										<!--	class="cl_input cl_doc cl_uploadfile sapUiSizeCompact" xmlns:u="sap.ui.unified"/>-->
+										<VBox width="100%" class="cl_gap">
+											<Input id="fileNameInput"
+												enabled="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+												value="{JM_UploadedFile>/uploadedFileName}" class="cl_fileUploader sapUiSizeCompact" valueHelpRequest="fnUploadButtonpress"
+												showValueHelp="true"></Input>
+											<!--accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf"-->
+											<u:FileUploader id="hiddenUploader" change="fnFileSelected" uploadOnChange="false" fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf"
+												class="cl_fileupload"/>
+										</VBox>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>tagname}" class="cl_label"/>
+										<!--<Input id="id_tagInput" editable="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" class="cl_input cl_doc cl_inputrev sapUiSizeCompact"/>-->
+										<Input id="id_tagInput"
+											editable="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+											class="cl_input cl_doc cl_inputrev sapUiSizeCompact"/>
+									</VBox>
+									<HBox justifyContent="End" class="cl_gap sapUiSmallMarginTop">
+										<Button text="{i18n>attfile}" tooltip="{i18n>attfile}" class="cl_pribtn cl_buttonpad sapUiSizeCompact" press="fnAttachPress"
+											icon="{= ${JM_ImageModel>/path} + 'AttfileIcon.svg'}"/>
+									</HBox>
+								</VBox>
+							</layout:Grid>
+						</VBox>
+					</VBox>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<buttons>
+			<Button text="{i18n>Cancel_btn}" tooltip="{i18n>Cancel_btn}" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}"
+				class="sapUiSizeCompact cl_secbtn sapUiSmallMarginEnd" press="fnClose"/>
+		</buttons>
+	</m:Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:grid="sap.ui.layout" xmlns:uitable="sap.ui.table">
+	<Dialog title="{i18n>ChangeLog}" showHeader="false" contentWidth="1000px" class="cl_DesDupDialog sapUiSizeCompact"
+		afterClose="fnDupMsgFragClose">
+		<customHeader>
+			<Toolbar class="cl_DupDialogToolbar" height="2.5rem">
+				<ToolbarSpacer/>
+				<Text text="{i18n>ChangeLogDetails}" class="cl_DupDialogTitle sapUiTinyMarginTopBottom"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<VBox class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom sapUiTinyMarginTop">
+			<uitable:Table rows="{JM_ChangeLog>/}" visibleRowCount="10" selectionMode="None" class="cl_table cl_changelogtable">
+				<uitable:noData>
+					<VBox alignItems="Center" justifyContent="Center">
+						<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="130px" height="130px" tooltip="{i18n>NoDatafound}"/>
+						<Label text="{i18n>NoDatafound}" class="cl_noDataText sapUiSmallMarginTop"/>
+					</VBox>
+				</uitable:noData>
+				<uitable:columns>
+					<!--<uitable:Column width="23%" filterProperty="ItemNo" sortProperty="ItemNo"-->
+					<!--visible="{= ${JM_processModel>/AppId} === 'CMX' || ${JM_processModel>/AppId} === 'VMX' || ${JM_ContextModel>/Appid} === 'CMX' || ${JM_ContextModel>/Appid} === 'VMX' }">-->
+					<!--	<Label text="{i18n>ItemNo}" tooltip="{i18n>ItemNo}"/>-->
+					<!--	<uitable:template>-->
+					<!--		<Label text="{JM_ChangeLog>ItemNo}" tooltip="{JM_ChangeLog>ItemNo}" class="cl_table_label sapUiSmallMarginBegin"/>-->
+					<!--	</uitable:template>-->
+					<!--</uitable:Column>-->
+					<uitable:Column width="23%" filterProperty="View" sortProperty="View">
+						<Label text="{i18n>ViewName}" tooltip="{i18n>ViewName}"/>
+						<uitable:template>
+							<Text text="{JM_ChangeLog>View}" tooltip="{JM_ChangeLog>View}" class="cl_label sapUiSmallMarginBegin"/>
+						</uitable:template>
+					</uitable:Column>
+					<!--<uitable:Column width="23%" filterProperty="SubView" sortProperty="SubView">-->
+					<!--	<Label text="{i18n>TableName}" tooltip="{i18n>TableName}"/>-->
+					<!--	<uitable:template>-->
+					<!--		<Label text="{JM_ChangeLog>SubView}" tooltip="{JM_ChangeLog>SubView}" class="cl_table_label sapUiTinyMarginBegin"/>-->
+					<!--	</uitable:template>-->
+					<!--</uitable:Column>-->
+					<!--<uitable:Column width="8%" filterProperty="TableRow" sortProperty="TableRow">-->
+					<!--	<Label text="{i18n>Row}" tooltip="{i18n>TableRow}"/>-->
+					<!--	<uitable:template>-->
+					<!--		<Label text="{JM_ChangeLog>TableRow}" tooltip="{JM_ChangeLog>TableRow}" class="cl_table_label sapUiTinyMarginBegin"/>-->
+					<!--	</uitable:template>-->
+					<!--</uitable:Column>-->
+					<uitable:Column width="18%" filterProperty="FieldName" sortProperty="FieldName">
+						<Label text="{i18n>Field}" tooltip="{i18n>Field}"/>
+						<uitable:template>
+							<Text text="{JM_ChangeLog>FieldName}" tooltip="{JM_ChangeLog>FieldName}" class="cl_label sapUiTinyMarginBegin"/>
+						</uitable:template>
+					</uitable:Column>
+					<uitable:Column width="15%" filterProperty="OldValue" sortProperty="OldValue">
+						<Label text="{i18n>OldValue}" tooltip="{i18n>OldValue}"/>
+						<uitable:template>
+							<Text text="{JM_ChangeLog>OldValue}" tooltip="{JM_ChangeLog>FieldName}" class="cl_label sapUiTinyMarginBegin"/>
+						</uitable:template>
+					</uitable:Column>
+					<uitable:Column width="15%" filterProperty="NewValue" sortProperty="NewValue">
+						<Label text="{i18n>NewValue}" tooltip="{i18n>NewValue}"/>
+						<uitable:template>
+							<Text text="{JM_ChangeLog>NewValue}" tooltip="{JM_ChangeLog>NewValue}" class="cl_label sapUiTinyMarginBegin"/>
+						</uitable:template>
+					</uitable:Column>
+					<uitable:Column width="15%" filterProperty="ChangedBy" sortProperty="ChangedBy">
+						<Label text="{i18n>Changedby}" tooltip="{i18n>Changedby}"/>
+						<uitable:template>
+							<Text text="{JM_ChangeLog>ChangedBy}" tooltip="{JM_ChangeLog>ChangedBy}" class="cl_label sapUiTinyMarginBegin"/>
+						</uitable:template>
+					</uitable:Column>
+				</uitable:columns>
+			</uitable:Table>
+		</VBox>
+		<buttons>
+			<Button text="{i18n>ChangeDetails}" icon="{= ${JM_ImageModel>/path} + 'Clearall.svg'}" class="cl_secbtn sapUiSizeCompact "
+				press="fnCloseChanLogDialog" visible="{JM_FooterBtnModel>/Submit}"/>
+	
+			<Button text="{i18n>Proceed}" visible="{JM_FooterBtnModel>/Submit}" icon="{= ${JM_ImageModel>/path} + 'Continue.svg'}"
+				class="cl_pribtn sapUiSizeCompact " press="fn_validateAndSubmit"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

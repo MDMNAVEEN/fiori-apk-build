@@ -1,0 +1,20 @@
+.cl_keydata {
+    background-image: url("../Images/KeydataBG.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    height: clamp(250px, 50vw, 85vh) !important;
+}
+.cl_KeyImage {
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cl_page{
+	background:#fff;
+}
+
+.cl_ptimg{
+	margin-top:5px;
+}

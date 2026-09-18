@@ -1,0 +1,114 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="MDM_QIR.controller.KeyData"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:layout="sap.ui.layout">
+	<App>
+		<pages>
+			<Page showHeader="false" title="Title" class="cl_page cl_keypage" enableScrolling="false">
+				<content>
+					<VBox class="cl_side">
+						<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>
+					</VBox>
+					<core:Fragment fragmentName="MDM_QIR.Fragments.Header" type="XML"/>
+					<VBox width="100%" class="sapUiMediumMarginBegin sapUiTinyMarginTop cl_main">
+						<VBox class="sapUiMediumMarginBegin sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
+							<HBox class="cl_tabBar" justifyContent="SpaceBetween" alignItems="Center" width="100%" renderType="Bare">
+								<HBox class="cl_tabbtn" press="fn_search" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Start" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'SearchIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>search}" tooltip="{i18n>search}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_gotokeydata" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab activeTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'StorageIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>keydata}" tooltip="{i18n>keydata}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_matdet" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'NewInitiator.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>qinfo}" tooltip="{i18n>qinfo}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_reviewer" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'PasteIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>reviewer}" tooltip="{i18n>reviewer}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_approver" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'ApproverIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>approver}" tooltip="{i18n>approver}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+							</HBox>
+						</VBox>
+						<VBox class="cl_search sapUiSmallMarginTop sapUiMediumMarginBegin sapUiLargeMarginEnd">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>KeyData_view}" class="cl_headtxt2 sapUiTinyMarginTopBottom sapUiSmallMarginBegin"/>
+							</HBox>
+							<layout:Grid defaultSpan="L3 M4 S12" class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+								<VBox>
+									<!--<layoutData>-->
+									<!--	<layout:GridData span="L6 M12 S12"/>-->
+									<!--</layoutData>-->
+									<Label text="{i18n>matno}" required="true" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input showValueHelp="true" valueHelpRequest="fn_openF4" id="SID_QIR_MATNR" maxLength="18" liveChange="fn_liveDataFetch"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_MATNRDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>revlev}" class="cl_label"/>
+									<!--<HBox class="cl_gap">-->
+									<!--	<VBox width="30%"><Input id="id_revlevel" valueHelpRequest="fn_openF4" showValueHelp="true" class="cl_input sapUiSizeCompact"/></VBox>-->
+									<VBox width="100%"><Input id="SID_QIR_DES" class="cl_input cl_inputrev sapUiSizeCompact"/></VBox>
+									<!--</HBox>-->
+								</VBox>
+								<VBox>
+									<Label text="{i18n>vendor}" required="true" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="SID_QIR_LIFNR" maxLength="10" showValueHelp="true" liveChange="fn_liveDataFetch" valueHelpRequest="fn_openF4"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input id="SID_QIR_LIFNRDES" editable="false" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+								<VBox width="100%">
+									<Label text="{i18n>plant}" required="true" class="cl_label"/>
+									<HBox class="cl_gap">
+										<VBox width="30%"><Input id="SID_QIR_WERKS" maxLength="4" valueHelpRequest="fn_openF4" liveChange="fn_liveDataFetch" showValueHelp="true"
+											class="cl_input sapUiSizeCompact"/></VBox>
+										<VBox width="70%"><Input editable="false" id="SID_QIR_WERKSDES" class="cl_input sapUiSizeCompact"/></VBox>
+									</HBox>
+								</VBox>
+							</layout:Grid>
+						</VBox>
+					</VBox>
+					<VBox class="cl_keydata">
+						<ToolbarSpacer/>
+						<Image src="{= ${JM_ImageModel>/path} + 'robotImage.svg'}" alt="{i18n>robot}" class="cl_KeyImage"/>
+						<ToolbarSpacer/>
+					</VBox>
+					<OverflowToolbar class="cl_footerBar ">
+						<HBox class="sapUiTinyMarginBegin" alignItems="Center">
+							<Text text="{i18n>pageTip}" class="cl_kd_pageTip sapUiLargeMarginBegin"/>
+							<Image src="{= ${JM_ImageModel>/path} + 'PagetipIcon.svg'}" width="0.8rem" class="cl_ptimg sapUiTinyMarginBegin" tooltip="{i18n>pageTip_tt}"/>
+						</HBox>
+						<ToolbarSpacer/>
+						<!--<Button text="{i18n>cancel}" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}" press="fn_cancel" class="cl_secbtn cl_commonbtn sapUiSizeCompact"/>-->
+						<!--<Button text="{i18n>checkdup}" icon="{= ${JM_ImageModel>/path} + 'DoubleTickIcon.svg'}" class="cl_pribtn cl_commonbtn sapUiTinyMarginEnd sapUiSizeCompact"/>-->
+						<Button text="{i18n>proceed}" tooltip="{i18n>proceed}" icon="{= ${JM_ImageModel>/path} + 'ProceedIcon.svg'}" press="fn_proceed"
+							class="cl_pribtn sapUiTinyMarginEnd sapUiSizeCompact"/>
+					</OverflowToolbar>
+				</content>
+				<!--<footer>-->
+				<!--</footer>-->
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

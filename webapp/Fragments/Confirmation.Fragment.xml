@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="confirmDialog" draggable="true" resizable="false" contentWidth="400px"
+		class="cl_DesDupDialog cl_dlg sapUiSizeCompact sapUiResponsivePadding">
+		<customHeader>
+			<Toolbar class="cl_DupDialogToolbar" height="2.5rem">
+				<!--<contentMiddle>-->
+				<!--	<Title text="{confirmModel>/title}"/>-->
+				<!--</contentMiddle>-->
+				<ToolbarSpacer/>
+				<Text text="{confirmModel>/title}" class=" sapUiTinyMarginTopBottom"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<VBox class="sapUiSmallMargin" alignItems="Center">
+				<Text text="{confirmModel>/message}" textAlign="Center"/>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="No" tooltip="No" icon="{= ${JM_ImageModel>/path} + 'MultiplyIcon.svg'}" class="sapUiSizeCompact cl_commonbtn cl_secbtn"
+				press=".onConfirmCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="Yes" tooltip="Yes" icon="{= ${JM_ImageModel>/path} + 'DoubleTickIcon.svg'}" class="sapUiSizeCompact cl_commonbtn cl_pribtn"
+				press=".onConfirmSubmit"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

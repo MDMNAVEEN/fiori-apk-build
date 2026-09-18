@@ -1,0 +1,266 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="MDM_QIR.controller.Initiator"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:layout="sap.ui.layout" xmlns:uitable="sap.ui.table" xmlns:u="sap.ui.unified">
+	<App>
+		<pages>
+			<Page showHeader="false" title="Title" class="cl_page cl_initpage">
+				<content>
+					<VBox class="cl_side">
+						<core:Fragment fragmentName="MDM_QIR.Fragments.SideNavBar" type="XML"/>
+					</VBox>
+					<core:Fragment fragmentName="MDM_QIR.Fragments.Header" type="XML"/>
+					<VBox width="100%" class="sapUiMediumMarginBegin sapUiTinyMarginTop cl_main">
+						<VBox class="sapUiMediumMarginBegin sapUiLargeMarginEnd" justifyContent="Center" alignItems="Center">
+							<HBox class="cl_tabBar" justifyContent="SpaceBetween" alignItems="Center" width="100%" renderType="Bare">
+								<HBox class="cl_tabbtn" press="fn_search" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Start" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'SearchIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>search}" tooltip="{i18n>search}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_gotokeydata" alignItems="Center" justifyContent="Center">
+									<HBox class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'StorageIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>keydata}" tooltip="{i18n>keydata}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_matdet" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabInitiator" class="cl_innerTab activeTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'NewInitiator.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>qinfo}" tooltip="{i18n>qinfo}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_reviewer" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabReviewer" class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'PasteIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>reviewer}" tooltip="{i18n>reviewer}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+								<VBox class="cl_separator"></VBox>
+								<HBox class="cl_tabbtn" press="fn_approver" alignItems="Center" justifyContent="Center">
+									<HBox id="idTabApprover" class="cl_innerTab" alignItems="Stretch" justifyContent="Center">
+										<Image src="{= ${JM_ImageModel>/path} + 'ApproverIcon.svg'}" width="23px" height="23px"/>
+										<Text text="{i18n>approver}" tooltip="{i18n>approver}" class="cl_tabText sapUiVisibleOnlyOnDesktop"/>
+									</HBox>
+								</HBox>
+							</HBox>
+						</VBox>
+					</VBox>
+					<VBox class="cl_mainscroll sapUiSmallMarginTop">
+						<VBox class="cl_search " id="id_top">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>KeyData_view}" class="cl_headtxt2 sapUiTinyMarginTopBottom sapUiSmallMarginBegin"/>
+							</HBox>
+							<VBox class="cl_padding">
+								<layout:Grid defaultSpan="L3 M4 S12" class=" sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+									<VBox>
+										<!--<layoutData>-->
+										<!--	<layout:GridData span="L6 M12 S12"/>-->
+										<!--</layoutData>-->
+										<Label text="{i18n>matno}" class="cl_label"/>
+										<HBox class="cl_gap">
+											<VBox width="30%"><Input showValueHelp="true" editable="false" valueHelpRequest="fn_openF4" id="SID_QIR_MATNR" liveChange="fn_liveDataFetch"
+												class="cl_input sapUiSizeCompact"/></VBox>
+											<VBox width="70%"><Input editable="false" id="SID_QIR_MATNRDES" class="cl_input sapUiSizeCompact"/></VBox>
+										</HBox>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>revlev}" class="cl_label"/>
+										<!--<HBox class="cl_gap">-->
+										<!--	<VBox width="30%"><Input id="id_revlevel" valueHelpRequest="fn_openF4" showValueHelp="true" class="cl_input sapUiSizeCompact"/></VBox>-->
+										<VBox width="100%"><Input id="SID_QIR_REVLV" editable="false" class="cl_input sapUiSizeCompact"/></VBox>
+										<!--</HBox>-->
+									</VBox>
+									<VBox>
+										<Label text="{i18n>vendor}" class="cl_label"/>
+										<HBox class="cl_gap">
+											<VBox width="30%"><Input id="SID_QIR_LIFNR" editable="false" showValueHelp="true" liveChange="fn_liveDataFetch" valueHelpRequest="fn_openF4"
+												class="cl_input sapUiSizeCompact"/></VBox>
+											<VBox width="70%"><Input id="SID_QIR_LIFNRDES" editable="false" class="cl_input sapUiSizeCompact"/></VBox>
+										</HBox>
+									</VBox>
+									<VBox width="100%">
+										<Label text="{i18n>plant}" class="cl_label"/>
+										<HBox class="cl_gap">
+											<VBox width="30%"><Input id="SID_QIR_WERKS" editable="false" valueHelpRequest="fn_openF4" liveChange="fn_liveDataFetch" showValueHelp="true"
+												class="cl_input sapUiSizeCompact"/></VBox>
+											<VBox width="70%"><Input editable="false" id="SID_QIR_WERKSDES" class="cl_input sapUiSizeCompact"/></VBox>
+										</HBox>
+									</VBox>
+								</layout:Grid>
+							</VBox>
+						</VBox>
+						<VBox alignItems="End" class="sapUiMediumMarginBegin sapUiTinyMarginEnd">
+							<Button text="{i18n>collapse_all_btn}" tooltip="{i18n>collapse_all_btn}" id="id_colbtn" press="fn_collapse"
+								class="cl_pribtn cl_colbtn sapUiSizeCompact"/>
+						</VBox>
+						<VBox id="container"></VBox>
+						<VBox class="cl_search ">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>attachments}" class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>
+							</HBox>
+							<VBox class="sapUiTinyMarginBeginEnd sapUiTinyMarginTopBottom">
+								<layout:Grid defaultSpan="L3 M12 S12">
+									<VBox height="250px" width="100%" id="id_maintable">
+										<layoutData>
+											<layout:GridData span="L9 M12 S12"/>
+										</layoutData>
+										<VBox class="cl_padding">
+											<layout:Grid defaultSpan="L12 M12 S12" hSpacing="0">
+												<HBox>
+													<layoutData>
+														<layout:GridData span="L9 M12 S12"/>
+													</layoutData>
+													<VBox height="1.4rem" class="cl_separatorline sapUiTinyMarginBottom"></VBox>
+													<Text text="{i18n>uploadfiles}" class="cl_headtxt sapUiTinyMarginBottom sapUiSizeCompact sapUiTinyMarginEnd"/>
+													<Text text="{i18n>supportedfiles}" class="cl_label"/>
+												</HBox>
+												<HBox justifyContent="End">
+													<layoutData>
+														<layout:GridData span="L3 M12 S12"/>
+													</layoutData>
+													<Button class="cl_nvariant cl_nvariantin cl_buttonpad sapUiSizeCompact" press="fnMassDownload"
+														enabled="{= ${JM_DocTypeModel>/List}.length > 1 }" icon="{= ${JM_ImageModel>/path} + 'DownloadIcon.svg'}"/>
+												</HBox>
+											</layout:Grid>
+										</VBox>
+										<uitable:Table id="idAttachmentTable" class="cl_init_table cl_padding" selectionBehavior="Row" rows="{JM_DocTypeModel>/List}"
+											visibleRowCount="5" selectionMode="MultiToggle" width="100%" enableColumnResize="true">
+											<uitable:noData>
+												<VBox alignItems="Center" justifyContent="Center" height="100%">
+													<Image src="{= ${JM_ImageModel>/path} + 'NoDataFound.png'}" width="120px" height="120px"/>
+													<Text text="No Data Found" class="cl_label"/>
+												</VBox>
+											</uitable:noData>
+											<uitable:columns>
+												<uitable:Column label="{i18n>attno}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>attno}">
+													<uitable:template>
+														<Text text="{JM_DocTypeModel>AttachmentNo}" class="cl_label"/>
+													</uitable:template>
+												</uitable:Column>
+												<uitable:Column label="{i18n>att}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>att}">
+													<uitable:template>
+														<Link text="{JM_DocTypeModel>TagName}" class=" cl_label" press="fnDownloadSingleFile"/>
+													</uitable:template>
+												</uitable:Column>
+												<uitable:Column label="{i18n>doctype}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>doctype}">
+													<uitable:template>
+														<Text text="{JM_DocTypeModel>DocType}" class="cl_label"/>
+													</uitable:template>
+												</uitable:Column>
+												<uitable:Column label="{i18n>filesize}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>filesize}">
+													<uitable:template>
+														<Text text="{JM_DocTypeModel>Size}" class="cl_label"/>
+													</uitable:template>
+												</uitable:Column>
+												<uitable:Column label="{i18n>delete}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>delete}">
+													<uitable:template>
+														<Button icon="{= ${JM_ImageModel>/path} + 'DeleteBlueIcon.svg'}" class="sapUiSizeCompact sapUiTinyMarginBegin cl_expand cl_delete"
+															tooltip="{i18n>delete}" press="fn_DeleteFileRow"/>
+													</uitable:template>
+												</uitable:Column>
+												<uitable:Column label="{i18n>cre}" class="cl_labeltbl" filterProperty="" tooltip="{i18n>cre}">
+													<uitable:template>
+														<Text text="{JM_DocTypeModel>CreatedBy}" class="cl_label"/>
+													</uitable:template>
+												</uitable:Column>
+											</uitable:columns>
+										</uitable:Table>
+									</VBox>
+									<VBox justifyContent='Start' class="sapUiMediumMarginTop">
+										<VBox class="sapUiTinyMarginTop">
+											<Label text="{i18n>doctype}" class="cl_label"/>
+											<!--<ComboBox id="id_doccombo" editable="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" width="100%" class="cl_varsel cl_doc sapUiSizeCompact sapUiTinyMarginEnd " placeholder="{i18n>stype}" items="">-->
+											<!--	<core:Item key="{JM_Variant>VariantName}" text="{JM_Variant>VariantName}"/>-->
+											<!--</ComboBox>-->
+											<ComboBox id="id_doccombo"
+												editable="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+												width="100%" class="cl_varsel cl_doc sapUiSizeCompact sapUiTinyMarginEnd " placeholder="{i18n>stype}" items="">
+												<core:Item key="{JM_Variant>VariantName}" text="{JM_Variant>VariantName}"/>
+											</ComboBox>
+										</VBox>
+										<VBox>
+											<Label text="{i18n>uploadfile}" class="cl_label"/>
+											<!--<u:FileUploader id="fileUploader" enabled="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" width="100%" change="fnFileSelected" uploadOnChange="false"-->
+											<!--	fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf" accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf"-->
+											<!--	uploadComplete="onUploadComplete" class="cl_input cl_doc cl_uploadfile sapUiSizeCompact" xmlns:u="sap.ui.unified"/>-->
+											<!--<u:FileUploader id="fileUploader"-->
+											<!--	enabled="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"-->
+											<!--	width="100%" change="fnFileSelected" uploadOnChange="false" fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf"-->
+											<!--	accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf" uploadComplete="onUploadComplete"-->
+											<!--	class="cl_input cl_doc cl_uploadfile sapUiSizeCompact" xmlns:u="sap.ui.unified"/>-->
+											<VBox width="100%" class="cl_gap">
+												<Input id="fileNameInput"
+													enabled="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+													value="{JM_UploadedFile>/uploadedFileName}" class="cl_fileUploader sapUiSizeCompact" valueHelpRequest="fnUploadButtonpress" showValueHelp="true"></Input>
+												<!--accept=".doc,.docx,.xls,.xlsx,.wdsl,.msg,.eml,.zip,.htm,.pdf"-->
+												<u:FileUploader id="hiddenUploader" change="fnFileSelected" uploadOnChange="false" fileType="doc,docx,xls,xlsx,wdsl,msg,eml,zip,htm,pdf"
+													class="cl_fileupload"/>
+											</VBox>
+										</VBox>
+										<VBox>
+											<Label text="{i18n>tagname}" class="cl_label"/>
+											<!--<Input id="id_tagInput" editable="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }" class="cl_input cl_doc cl_inputrev sapUiSizeCompact"/>-->
+											<Input id="id_tagInput"
+												editable="{= (${JM_LevelModel>/level} === 'I' || ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A') &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+												class="cl_input cl_doc cl_inputrev sapUiSizeCompact"/>
+										</VBox>
+										<HBox justifyContent="End" class="cl_gap ">
+											<Button text="{i18n>attfile}" tooltip="{i18n>attfile}" class="cl_pribtn cl_buttonpad sapUiSizeCompact" press="fnAttachPress"
+												icon="{= ${JM_ImageModel>/path} + 'AttfileIcon.svg'}"/>
+										</HBox>
+									</VBox>
+								</layout:Grid>
+							</VBox>
+						</VBox>
+						<VBox class="cl_search sapUiSmallMarginTop sapUiSmallMarginBottom">
+							<HBox class="cl_phbox">
+								<Text text="{i18n>comments}" class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>
+								<!--<Text text="{i18n>comments}"-->
+								<!--	visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"-->
+								<!--	class="cl_headtxt2 sapUiSmallMarginTopBottom sapUiSmallMarginBegin"/>-->
+							</HBox>
+							<VBox justifyContent="Center" class="sapUiSmallMargin">
+								<TextArea width="100%" id="id_textarea" rows="3" class="cl_textarea "></TextArea>
+							</VBox>
+							<VBox id="id_comments" width="100%" class="sapUiSmallMarginBegin"></VBox>
+						</VBox>
+					</VBox>
+					<OverflowToolbar class="cl_footerBar sapUiTinyMarginBegin ">
+						<HBox class="sapUiTinyMarginBegin">
+							<Button id="messagePopoverBtn" visible="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonVisible' }"
+								icon="sap-icon://message-error" tooltip="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonText' }"
+								text="{ path: 'JM_MsgModel>/messages', formatter: '.messageButtonText' }" press=".handleMessagePopoverPress"
+								class="cl_errorbuttonPopover sapUiLargeMarginBegin"/>
+						</HBox>
+						<!--<HBox alignItems="Center">-->
+						<!--	<Text text="{i18n>pageTip}" class="cl_kd_pageTip sapUiLargeMarginBegin"/>-->
+						<!--	<Image src="{= ${JM_ImageModel>/path} + 'PagetipIcon.svg'}" width="0.8rem" class="cl_ptimg sapUiTinyMarginBegin" tooltip="{i18n>pageTip_tt}"/>-->
+						<!--</HBox>-->
+						<ToolbarSpacer/>
+						<Button tooltip="{i18n>reject}" text="{i18n>reject}" icon="{= ${JM_ImageModel>/path} + 'RejectW.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A' }" press="fnReject" class="cl_secbtn sapUiSizeCompact"/>
+						<Button tooltip="{i18n>sendback}" text="{i18n>sendback}" icon="{= ${JM_ImageModel>/path} + 'SendbackW.svg'}"
+							visible="{= (${JM_LevelModel>/level} === 'R' &amp;&amp; ${JM_LevelModel>/sendback} !== 'X') || ${JM_LevelModel>/level} === 'A' }"
+							class="cl_secbtn sapUiSizeCompact" press="fnSendback"/>
+						<Button tooltip="{i18n>saveasdarft}" text="{i18n>saveasdarft}" icon="{= ${JM_ImageModel>/path} + 'SaveVarIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ${JM_LevelModel>/sendback} !== 'X' &amp;&amp; !${JM_FromModel>/fromDashboard} }"
+							press="fn_saveasdraftconfirmation" class="cl_secbtn sapUiSizeCompact"/>
+						<Button tooltip="{i18n>changelog_btn}" text="{i18n>changelog_btn}" icon="{= ${JM_ImageModel>/path} + 'CancelIcon.svg'}" press="fnChangelog"
+							class="cl_secbtn sapUiSizeCompact" visible="{= ${JM_LevelModel>/AppId} === 'QIRX' || ${JM_ContextModel>/Appid} === 'QIRX'}"/>
+						<Button tooltip="{i18n>submit}" text="{i18n>submit}" icon="{= ${JM_ImageModel>/path} + 'SubmitIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'R' || ${JM_LevelModel>/level} === 'A' }" press="fn_validateAndSubmit"
+							class="cl_pribtn sapUiSizeCompact"/>
+						<Button tooltip="{i18n>submit}" text="{i18n>submit}" icon="{= ${JM_ImageModel>/path} + 'SubmitIcon.svg'}"
+							visible="{= ${JM_LevelModel>/level} === 'I' &amp;&amp; ( !${JM_FromModel>/fromDashboard} || ${JM_ContextModel>/Progress} === 'Draft' ) }"
+							press="fn_validateAndSubmit" class="cl_pribtn sapUiSizeCompact"/>
+					</OverflowToolbar>
+				</content>
+				<!--<footer>-->
+				<!--</footer>-->
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<Popover class="cl_columnshead sapUiSizeCompact cl_footercust " showHeader="false" verticalScrolling="true" contentHeight="auto">
+		
+		<Toolbar class="sapUiTinyMargin cl_bordertool">
+			<Input placeholder="{i18n>SearchHere}" liveChange="fnColumnFilter" id="id_popover_search" class="cl_input cl_inputmain "/>
+		</Toolbar>
+		<HBox  alignItems="Center" class="sapUiTinyMarginBegin" >
+			<CheckBox id="id_checkselect" selected="true" class="cl_checkboxSel" select="fnCheckSelAll"/>
+			<Text text="{i18n>Fields}" class="cl_columnListText"/>
+		</HBox>
+		<List   showSeparators="None" id="id_columnSel" items="{JMColumn>/}" class="cl_no_focus_list sapUiTinyMarginBottom">
+			<CustomListItem class="cl_list_act sapUiTinyMarginTop">
+				<FlexBox height="1.6rem" alignItems="Center" justifyContent="SpaceBetween"  class="cl_bordertout sapUiSmallMarginBeginEnd">
+				<HBox alignItems="Center">
+					<CheckBox selected="{JMColumn>Visible}" class="cl_checkboxSel" select="fnFieldSel"/>
+					<Text text="{JMColumn>CName}" class="cl_columnListText"/>
+					</HBox>
+					<ToolbarSpacer/>
+						<Image src="{= ${JM_ImageModel>/path} + 'Drag.svg'}"  width="0.8rem" class="sapUiTinyMarginEnd"/>
+				</FlexBox>
+			</CustomListItem>
+		</List>
+			<HBox  alignItems="Center" class=" cl_coloroutline sapUiTinyMarginBegin" >
+			<CheckBox id="id_wrapTextSele"  selected="true" select="fnFieldSel" class="cl_checkboxSel" />
+			<Text text="{i18n>WrapText}" class="cl_columnListText" />
+		</HBox>
+		<Bar >
+			<!--<Text text="WrapText"/>-->
+			<contentMiddle >
+				<Button text="{i18n>Cancel}" icon="sap-icon://decline" class="sapUiTinyMarginTop cl_WhiteBtn cl_focusbtn cl_iconColumn" press="fnCancel"/>
+				<Button text="{i18n>Apply}" icon="{= ${JM_ImageModel>/path} + 'ApplyOk.svg'}" class="sapUiTinyMarginTop cl_primaryBtn cl_focusbtn cl_iconBtn " press="fnApply"/>
+			</contentMiddle>
+		</Bar>
+	</Popover>
+</core:FragmentDefinition>

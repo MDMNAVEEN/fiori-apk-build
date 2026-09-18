@@ -1,0 +1,65 @@
+Label Styles
+
+
+.cl_uwllabel {
+    font-family: 'Segoe UI' !important;
+    font-style: normal;
+    font-size: 13px;
+    color: #141414 !important;
+}
+
+.cl_uwllabel.sapMLabel.sapMLabelRequired .sapMLabelColonAndRequired::after {
+    color: #ff383c !important;
+}
+
+.cl_uwlrectext {
+    font-family: "Segoe UI" !important;
+    font-style: normal;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    color: #141414;
+}
+
+.cl_uwlCount {
+    font-family: 'Segoe UI' !important;
+    letter-spacing: 0.15px;
+    font-style: normal;
+    font-weight: 600;
+    color: #3393A1;
+}
+
+
+*************** Table styles (UWLTable)***************************************
+
+.cl_init_toolbar {
+    border-bottom: none !important;
+    padding: 0px;
+}
+
+.cl_search_grid.sapUiRespGrid .sapMIBar .sapMBarChild:first-child {
+    margin-left: 0px !Important;
+}
+
+.cl_search_grid {
+    background: #ffffff;
+    padding-top: 0.7rem!important;
+    border-right: 1px solid #9AA0A7;
+    border-left: 1px solid #9AA0A7;
+    border-bottom: 1px solid #9AA0A7;
+    border-top: 1px solid #9AA0A7;
+    border-radius: 7px;
+}
+
+.cl_link.sapMLnk:not(.sapMLnkWrapping) .sapMLnkText {
+    color: #3393A1;
+}
+
+
+/* for removing table up border*/
+.sapMTB.sapMTBStandard{
+	border-bottom:1px solid #fff !important;
+}

@@ -1,41 +1,41 @@
 name: Build APK
 
-on:
-push:
-workflow_dispatch:
+"on":
+  push: {}
+  workflow_dispatch: {}
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Setup Node
-    uses: actions/setup-node@v4
-    with:
-      node-version: 20
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-  - name: Install Cordova
-    run: npm install -g cordova
+      - name: Install Cordova
+        run: npm install -g cordova
 
-  - name: Create Cordova App
-    run: |
-      cordova create app com.mdm.qir MDM_QIR
-      rm -rf app/www/*
-      cp -r webapp/* app/www/
+      - name: Create Cordova project
+        run: |
+          cordova create app com.mdm.qir MDM_QIR
+          rm -rf app/www/*
+          cp -r webapp/* app/www/
 
-  - name: Add Android
-    working-directory: app
-    run: cordova platform add android
+      - name: Add Android platform
+        working-directory: app
+        run: cordova platform add android
 
-  - name: Build APK
-    working-directory: app
-    run: cordova build android
+      - name: Build APK
+        working-directory: app
+        run: cordova build android
 
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: MDM-QIR-APK
-      path: app/platforms/android/app/build/outputs/apk/debug/*.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MDM-QIR-APK
+          path: app/platforms/android/app/build/outputs/apk/debug/*.apk

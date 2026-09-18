@@ -13,6 +13,10 @@ jobs:
           cordova create app com.yourcompany.fioriapp FioriApp
           rm -rf app/www/*
           cp -r webapp/* app/www/
+      - name: Patch config.xml for internal server access
+        run: |
+          cd app
+          sed -i 's#</widget>#<allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />\n<access origin="http://ashd2sap.exalca.corp:8000" />\n<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"><application android:usesCleartextTraffic="true" /></edit-config>\n</widget>#' config.xml
       - name: Add Android platform
         working-directory: app
         run: cordova platform add android

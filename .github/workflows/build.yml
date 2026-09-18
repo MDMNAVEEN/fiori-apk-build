@@ -1,0 +1,25 @@
+name: Build APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install Cordova
+        run: npm install -g cordova
+      - name: Create Cordova project
+        run: |
+          cordova create app com.yourcompany.fioriapp FioriApp
+          rm -rf app/www/*
+          cp -r webapp/* app/www/
+      - name: Add Android platform
+        working-directory: app
+        run: cordova platform add android
+      - name: Build APK
+        working-directory: app
+        run: cordova build android
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-apk
+          path: app/platforms/android/app/build/outputs/apk/debug/*.apk

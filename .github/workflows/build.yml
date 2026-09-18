@@ -8,7 +8,6 @@ jobs:
 build:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout source
     uses: actions/checkout@v4
@@ -28,23 +27,25 @@ steps:
       cp -r webapp/* app/www/
 
   - name: Configure Cordova
-    working-directory: app
     run: |
-      sed -i 's#</widget>#<allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />\n<allow-navigation href="https://sapui5.hana.ondemand.com/*" />\n<allow-navigation href="https://cdnjs.cloudflare.com/*" />\n<access origin="*" />\n<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"><application android:usesCleartextTraffic="true" /></edit-config>\n</widget>#' config.xml
+      cd app
+
+      python3 -c "from pathlib import Path; p=Path('config.xml'); s=p.read_text(); s=s.replace('</widget>', '''<allow-navigation href=\"*\" />
+      <access origin=\"*\" />
+      <allow-intent href=\"http://*/*\" />
+      <allow-intent href=\"https://*/*\" />
+      </widget>'''); p.write_text(s)"
 
   - name: Add Android platform
     working-directory: app
-    run: |
-      cordova platform add android
+    run: cordova platform add android
 
   - name: Build APK
     working-directory: app
-    run: |
-      cordova build android
+    run: cordova build android
 
   - name: Upload APK
     uses: actions/upload-artifact@v4
     with:
       name: app-apk
       path: app/platforms/android/app/build/outputs/apk/debug/*.apk
-```

@@ -10,9 +10,11 @@ runs-on: ubuntu-latest
 
 ```
 steps:
-  - uses: actions/checkout@v4
+  - name: Checkout source
+    uses: actions/checkout@v4
 
-  - uses: actions/setup-node@v4
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
     with:
       node-version: 20
 
@@ -22,40 +24,13 @@ steps:
   - name: Create Cordova project
     run: |
       cordova create app com.yourcompany.fioriapp FioriApp
-
       rm -rf app/www/*
       cp -r webapp/* app/www/
 
   - name: Configure Cordova
     working-directory: app
     run: |
-      python3 - <<'PY'
-      from pathlib import Path
-
-      path = Path("config.xml")
-      text = path.read_text()
-
-      insert = """
-          <allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />
-          <allow-navigation href="https://sapui5.hana.ondemand.com/*" />
-          <allow-navigation href="https://cdnjs.cloudflare.com/*" />
-
-          <access origin="http://ashd2sap.exalca.corp:8000" />
-          <access origin="https://sapui5.hana.ondemand.com" />
-          <access origin="https://cdnjs.cloudflare.com" />
-
-          <edit-config file="app/src/main/AndroidManifest.xml"
-                       mode="merge"
-                       target="/manifest/application">
-              <application
-                  xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:usesCleartextTraffic="true" />
-          </edit-config>
-      """
-
-      text = text.replace("</widget>", insert + "\n</widget>")
-      path.write_text(text)
-      PY
+      sed -i 's#</widget>#<allow-navigation href="http://ashd2sap.exalca.corp:8000/*" />\n<allow-navigation href="https://sapui5.hana.ondemand.com/*" />\n<allow-navigation href="https://cdnjs.cloudflare.com/*" />\n<access origin="*" />\n<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"><application android:usesCleartextTraffic="true" /></edit-config>\n</widget>#' config.xml
 
   - name: Add Android platform
     working-directory: app

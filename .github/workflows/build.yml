@@ -9,10 +9,10 @@ build:
 runs-on: ubuntu-latest
 
 steps:
-  - name: Checkout source
+  - name: Checkout
     uses: actions/checkout@v4
 
-  - name: Setup Node.js
+  - name: Setup Node
     uses: actions/setup-node@v4
     with:
       node-version: 20
@@ -20,23 +20,13 @@ steps:
   - name: Install Cordova
     run: npm install -g cordova
 
-  - name: Create Cordova project
+  - name: Create Cordova App
     run: |
-      cordova create app com.yourcompany.fioriapp FioriApp
+      cordova create app com.mdm.qir MDM_QIR
       rm -rf app/www/*
       cp -r webapp/* app/www/
 
-  - name: Configure Cordova
-    run: |
-      cd app
-
-      python3 -c "from pathlib import Path; p=Path('config.xml'); s=p.read_text(); s=s.replace('</widget>', '''<allow-navigation href=\"*\" />
-      <access origin=\"*\" />
-      <allow-intent href=\"http://*/*\" />
-      <allow-intent href=\"https://*/*\" />
-      </widget>'''); p.write_text(s)"
-
-  - name: Add Android platform
+  - name: Add Android
     working-directory: app
     run: cordova platform add android
 
@@ -47,5 +37,5 @@ steps:
   - name: Upload APK
     uses: actions/upload-artifact@v4
     with:
-      name: app-apk
+      name: MDM-QIR-APK
       path: app/platforms/android/app/build/outputs/apk/debug/*.apk
